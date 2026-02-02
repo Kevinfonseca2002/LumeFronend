@@ -1,0 +1,52 @@
+<form>
+    <h1>Crear Cuenta</h1>
+    <p>Únete a Lume y empieza a conectar</p>
+
+    <div class="rol">
+        <button class="user">User Account</button>
+        <button class="store" (click)="storeForm()">Store Account</button>
+    </div>
+@if (!store) {
+    <div class="box">
+        <label for="name">Full Name</label>
+        <input type="text">
+    </div>
+    <div class="box">
+        <label for="email">Email</label>
+        <input type="email">
+    </div>
+    <div class="box">
+        <label for="password">Password</label>
+        <input type="password">
+    </div>
+    <div class="box">
+        <label for="phone">Phone</label>
+        <input type="tel">
+    </div>
+    <div class="box">
+        <label for="location">Location</label>
+        <input type="text">
+    </div>
+    <div class="box">
+        <label for="biography">Biography</label>
+        <input type="text">
+    </div>
+}
+@else if (store) {
+    <h3>Pedro</h3>
+}
+<h3>Redes Sociales</h3>
+<div class="social-media">
+    <div class="facebook-icon"><img src="" alt=""></div><input type="text">
+</div>
+<div class="social-media">
+<div class="instagram-icon"><img src="" alt=""></div><input type="text">
+</div>
+<div class="social-media">
+<div class="x-icon"><img src="" alt=""></div><input type="text">
+</div>
+<div class="social-media">
+<div class="tiktok-icon"><img src="" alt=""></div><input type="text">
+</div>
+
+</form>

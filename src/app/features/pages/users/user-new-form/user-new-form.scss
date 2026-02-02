@@ -12,9 +12,11 @@ form {
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    border: solid black 1px;
+    border: solid rgb(144, 144, 144) 1px;
+    border-radius: 10px;
     width: 400px;
     height: 70%;
+    padding: 40px;
 
     .main-title {
         width: 100%;
@@ -29,7 +31,38 @@ form {
             display: flex;
             flex-direction: column;
             margin-top: 20px;
+
+            label {
+                margin-bottom: 5px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            input, textarea {
+                width: 300px;
+                height: 30px;
+                border: solid 1px #cccccc;
+                border-radius: 15px;
+                padding-left: 10px;
+            }
         }
+    }
+    .submit-button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 40px;
+
+        button {
+            width: 120px;
+            height: 35px;
+            background-color: #ff00dd;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
     }
 }
 
