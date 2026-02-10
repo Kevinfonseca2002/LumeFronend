@@ -1,0 +1,17 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10rem;
+
+  input {
+    border-radius: 1.5rem;
+    height: 2rem;
+    border: dotted #686868 0.1rem;
+    margin: 0 0 1.5rem 0;
+  }
+
+  label {
+    font-weight: bold;
+    padding: 0 0 0 1rem;
+  }
+}
