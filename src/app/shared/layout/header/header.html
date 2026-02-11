@@ -1,1 +1,24 @@
-<p>header works!</p>
+<nav class="navbar">
+    <ul>
+        <li><a routerLink="home">Home</a></li>
+        <li><a routerLink="admin">Store Interface</a></li>
+        <li><a routerLink="feed">Feed</a></li>
+        <li><a routerLink="register">Register</a></li>
+        <li><a routerLink="login">Login</a></li>
+    </ul>
+
+
+<!-- Dependiendo quien se loguea va a desplegar informacion -->
+
+@if (this.httpAuth.currentUser$ | async; as user){
+    <p>Bienvenido, {{user.name}}({{user.role}})</p>
+    <ul>
+        <li><button (click)="onLogout()">Logout</button></li>
+    </ul>
+}
+@else{
+    <li><a routerLink="register">Register</a></li>
+    <li><a routerLink="login">Login</a></li>
+}
+
+</nav>
