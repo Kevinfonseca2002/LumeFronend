@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpAuth } from '../../../core/services/http-auth';
-import { RegisterStore } from '../../../shared/layout/register.store/register.store';
-import { RegisterUser } from '../../../shared/layout/register.user/register.user';
 import { Header } from '../../../shared/layout/header/header';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RegisterStore, RegisterUser, Header],
+  imports: [ReactiveFormsModule, Header],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
