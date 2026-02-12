@@ -27,12 +27,13 @@ export class LoginForm {
 
     if(this.formData.valid){
     this.httpAuth.login(this.formData.value).subscribe({
-      next: data => {console.log('Login Succesful', data);
+      next: data => {
+        console.log('Login Succesful', data);
 
-        if (data.token && data.user){
-          this.httpAuth.saveLocalStorage(data.token, data.user)
-          this.router.navigate(['/'])
-        }
+        // if (data.token && data.user){
+        //   this.httpAuth.saveLocalStorage(data.token, data.user)
+        //   this.router.navigate(['/'])
+        // }
       this.formData.reset();
       },
       error: error => console.log('There was an error during the login', error),

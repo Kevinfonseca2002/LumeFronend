@@ -1,4 +1,4 @@
-export interface Register {
+export interface Users {
   _id: string;
   role: string;
   name: string;

@@ -11,7 +11,7 @@
 <!-- Dependiendo quien se loguea va a desplegar informacion -->
 
 @if (this.httpAuth.currentUser$ | async; as user){
-    <p>Bienvenido, {{user.name}}({{user.role}})</p>
+    <!-- <p>Bienvenido, {{user}}({{user.role}})</p> -->
     <ul>
         <li><button (click)="onLogout()">Logout</button></li>
     </ul>

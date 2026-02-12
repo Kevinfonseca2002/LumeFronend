@@ -1,7 +1,6 @@
 <app-header></app-header>
 
 <div class="formPosition">
-<form [formGroup]="formData" (ngSubmit)="onSubmit()">
   <h1>Create Account</h1>
   <p>Connect to Lume and start matching</p>
 
@@ -11,80 +10,11 @@
   </div>
 
   <h3>Personal Information</h3>
+ 
   @if (!store) {
-    <div class="box">
-      <label for="name">Full Name</label>
-      <input type="text" formControlName="name" />
-    </div>
-    <div class="box">
-      <label for="email">Email</label>
-      <input type="email" formControlName="email" />
-    </div>
-    <div class="box">
-      <label for="password">Password</label>
-      <input type="password" formControlName="password" />
-    </div>
-    <div class="box">
-      <label for="phone">Phone</label>
-      <input type="tel" formControlName="phone" />
-    </div>
-    <div class="box">
-      <label for="location">Location</label>
-      <input type="text" formControlName="location" />
-    </div>
-    <div class="box">
-      <label for="biography">Biography</label>
-      <input type="text" formControlName="description" />
-    </div>
+    <registerForm></registerForm>
   } @else if (store) {
-    <div class="box">
-      <label for="name">Store Name</label>
-      <input type="text" formControlName="name" />
-    </div>
-    <div class="box">
-      <label for="email">Email</label>
-      <input type="email" formControlName="email"/>
-    </div>
-    <div class="box">
-      <label for="password">Password</label>
-      <input type="password" formControlName="password"/>
-    </div>
-    <div class="box">
-      <label for="phone">Phone</label>
-      <input type="tel" formControlName="phone"/>
-    </div>
-    <div class="box">
-      <label for="location">Location</label>
-      <input type="text" formControlName="location"/>
-    </div>
-    <div class="box">
-      <label for="biography">Store Biography</label>
-      <input type="text" formControlName="description"/>
-    </div>
+    <userForm></userForm>
   }
-  <h3>Social Media</h3>
-  <div class="social-media">
-    <label for="facebookLink">Facebook</label>
-    <div class="facebook-icon"><img src="" alt="" /></div>
-    <input type="text" formControlName="facebookLink" />
-  </div>
-  <div class="social-media">
-    <label for="instagramLink">Instagram</label>
-    <div class="instagram-icon"><img src="" alt="" /></div>
-    <input type="text" formControlName="instagramLink" />
-  </div>
-  <div class="social-media">
-    <label for="xLink">X</label>
-    <div class="x-icon"><img src="" alt="" /></div>
-    <input type="text" formControlName="xLink" />
-  </div>
-  <div class="social-media">
-    <label for="tiktokLink">Tik Tok</label>
-    <div class="tiktok-icon"><img src="" alt="" /></div>
-    <input type="text" formControlName="tiktokLink" />
-  </div>
-  <div class="submitButton">
-    <button type="submit" [disabled]="formData.invalid">Save</button>
-  </div>
-</form>
+
 </div>
