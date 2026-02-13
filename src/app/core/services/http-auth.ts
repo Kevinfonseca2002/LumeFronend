@@ -81,20 +81,33 @@ export class HttpAuth {
     localStorage.removeItem('user')
   }
 
-  checkAuthStatus(){
+  checkAuthStatus():Observable<boolean>{
     //Paso 1: Ver si el token esta en el local storage y obtenerlo (responder al cliente si no existe)
     //Desestructurar los datos obtenidos del local 
     const {token}= this.getLocalStorageData()
 
     if(!token){
-      this.clearLocalStorageData();
-      return false
+      this.clearLocalStorageData()
+      return of (false)
     }
 
     //Paso 2: Obtener el Token del encabezado enviado por el Backend
     const headers = new HttpHeaders().set("Authorization",token)
 
     //Paso 3: Realizar una solicitud al backend para validar el token (Renew Token)
-    return this.http.get('http://localhost:3000/auth/renew-token', {headers})
+    return this.http.get<any>('http://localhost:3000/auth/renew-token', {headers})
+    .pipe(
+      map((response)=>{
+        if(!response.token && !response){
+          return false
+        }
+        this.saveLocalStorage(response.token, response.user)
+        return true;
+      }),
+      catchError((error)=>{
+        console.error(`ERROR:`,error)
+        return of(false)
+      })
+    )
   }
 }

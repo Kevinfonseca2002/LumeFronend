@@ -98,3 +98,38 @@
     color: rgb(72, 132, 236);
   }
 }
+
+.app-features{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2, p {
+    width: 100%;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 3rem;
+    margin: 2rem 0 0 2rem;
+  }
+
+  p{
+    font-size: 1.5rem;
+    color: #898989
+  }
+  .features{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+   .feature-box {
+      width: 25%;
+      height: 15rem;
+      border: solid black 1px;
+   }
+  }
+}
