@@ -4,12 +4,13 @@ import { HttpAuth } from '../../../core/services/http-auth';
 import { Header } from '../../../shared/layout/header/header';
 import { RegisterStore } from '../../../shared/layout/register.store/register.store';
 import { RegisterUser } from '../../../shared/layout/register.user/register.user';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, Header, RegisterStore, RegisterUser],
+  imports: [ReactiveFormsModule,  RegisterStore, RegisterUser],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -19,7 +20,8 @@ export class Register {
 
 
   constructor(
-    private httpAuth: HttpAuth
+    private httpAuth: HttpAuth,
+    private router: Router
   ){
     this.formData= new FormGroup({
       role: new FormControl("user"),
@@ -37,6 +39,9 @@ export class Register {
 
   }
 
+    returnHome(){
+      this.router.navigate(['/home'])
+    }
 
   storeForm(){
     this.store=true

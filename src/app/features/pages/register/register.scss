@@ -1,4 +1,33 @@
-.formPosition{
+.routing-button {
+  position: absolute;
+  top: 3rem;
+  left: 15rem;
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgb(233, 233, 233);
+    transition: 0.2s;
+    gap: 1rem;
+
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      transform: scale(1.16);
+    }
+    .icon :hover{
+      filter: invert(0);
+    }
+  }
+}
+
+.formPosition {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -8,8 +37,8 @@
     29px 29px 49px #9d9d9d,
     -29px -29px 49px #ffffff;
   padding: 2rem;
-  margin: auto;
-  
+  margin: 7rem auto;
+
   h1 {
     margin: 0;
     font-size: 1.8rem;
@@ -24,13 +53,14 @@
     margin-bottom: 0;
     text-align: center;
   }
-  
+
   h3 {
     margin: 0 0 4rem 0;
     padding: 0 0 0 3rem;
-    font-size: 2rem;}
+    font-size: 2rem;
+  }
 
-  .rol{
+  .rol {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,5 +87,4 @@
       }
     }
   }
-
 }

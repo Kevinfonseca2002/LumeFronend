@@ -15,7 +15,11 @@ export class Home {
   ){}
 
   beginLogin(){
-      this.router.navigate(["login"])
+    this.router.navigate(["login"])
+  }
+
+  registerStore(){
+    this.router.navigate(["register"])
   }
 
 }

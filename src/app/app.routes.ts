@@ -13,7 +13,7 @@ export const routes: Routes = [
     { path: "feed", component: PersonInterface},
     { path: "login", component: Login},
     { path: "register", component: Register},
-    { path: "home", component: Home, canActivate: [authGuard]},
+    { path: "home", component: Home},
     { path: "notfound",component: NotFound},
     { path: "signup", component: UserNewForm},
     { path: '', redirectTo: 'home', pathMatch: 'full' },
