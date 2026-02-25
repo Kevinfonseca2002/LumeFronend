@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonInterface } from './person-interface';
+import { Events } from './events';
 
-describe('PersonInterface', () => {
-  let component: PersonInterface;
-  let fixture: ComponentFixture<PersonInterface>;
+describe('Events', () => {
+  let component: Events;
+  let fixture: ComponentFixture<Events>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PersonInterface]
+      imports: [Events]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PersonInterface);
+    fixture = TestBed.createComponent(Events);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

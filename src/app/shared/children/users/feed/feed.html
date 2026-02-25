@@ -1,0 +1,22 @@
+<h1>Share your thoughts</h1>
+<p>Show your opinions and connect with others in our community feed.</p>
+
+<section class="create-post">
+    <form action="">
+    <div class="icon"><img src="assets/Profiles/Person1.jpg" alt=""></div>
+    <textarea name="" id=""></textarea>
+    <button type=><input type="file" (change)="captureFile($event)"></button>
+    <button type="submit"><div class="icon"><img src="assets/icons/feed/send.png" alt=""></div>Share</button>
+    </form>
+</section>
+
+@for( post of posts; track post.id ) {
+    <section class="post">
+        <div class="post-image"><img src="" alt=""></div>
+        <p>timestamp</p>
+        <div class="expression-buttons">
+            <button class="like"></button>
+            <button class="comment"></button>
+        </div>
+    </section>
+}

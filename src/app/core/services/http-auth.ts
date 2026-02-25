@@ -110,4 +110,15 @@ export class HttpAuth {
       })
     )
   }
+
+  getHeaders():any{
+    const {token}= this.getLocalStorageData()
+
+    if(!token){
+      this.clearLocalStorageData()
+      return of (false)
+    }
+    const headers = new HttpHeaders().set("Authorization",token)
+    return headers;
+  }  
 }
