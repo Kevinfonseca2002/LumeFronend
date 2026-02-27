@@ -1,3 +1,10 @@
+@if (httpAuth.currentUser$ | async; as user) {
+    <p>Current User: {{ user.name }}</p>
+  } @else {
+    <p>No user is currently logged in.</p>  
+  }
+
+
 <button (click)="editProfile()">Edit Profile</button>
 @if (editMode) {
     <!-- TODO: Formulario de edición de perfil -->
@@ -39,13 +46,26 @@
   </div>
 </section>
 
-
+@for(post of posts; track post.id){
   <div class="post-box">
     <div class="icon"><img src="" alt=""></div>
     <h3>Nombre</h3>
-    <p>13 Jun 2025</p>
+    <p class="date">13 Jun 2025</p>
     <h4>Taller Fotográfico</h4>
     <p class="description">Soy una descripción del post</p>
     <div class="post-img"><img src="" alt=""></div>
   </div>
+
+}
+
+
+
+
+<section class="delete-account">
+  <div class="delete-texts">
+  <h3>Delete Account</h3>
+  <p>This action will delete permanently your account and data. Please be sure this is a wanted action</p>
+  </div>
+  <!-- <button (click)="deleteProfile()">Delete</button> -->
+</section>
 

@@ -26,8 +26,8 @@ export const routes: Routes = [
     path: "feed", 
     component: PersonInterface,
     //TODO: Hacer que solo los usuarios con rol "user" puedan acceder a esta ruta 
-    // canActivate: [authGuard, roleGuard],
-    // data: { roles: ['user']}
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['user']},
     children: [
         {
             path: "my-profile",
