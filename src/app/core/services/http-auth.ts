@@ -24,7 +24,9 @@ export class HttpAuth {
   constructor(
     private http: HttpClient,
     private router: Router
-  ){}
+  ){
+    this.getLocalStorageData()
+  }
   
   register(credentials:Register):Observable<undefined | never[] | Partial<Register>>{
     return this.http.post<Partial<RegisterResponse>>('http://localhost:3000/auth/register', credentials).
@@ -43,7 +45,7 @@ export class HttpAuth {
             this.currentToken.next(data.token)
             this.currentUser.next(data.user)
             this.saveLocalStorage(data.token, data.user)
-            this.router.navigate(["/feed"])
+            this.router.navigate(["feed"])
           }
         }),
         catchError(error=> of ([]))
@@ -53,6 +55,8 @@ export class HttpAuth {
   saveLocalStorage(token: string,  userData: any){
     localStorage.setItem('token', token)
     localStorage.setItem('user', JSON.stringify(userData))
+    this.currentToken.next(token)
+    this.currentUser.next(userData)
   }
 
   getLocalStorageData(){
@@ -61,6 +65,8 @@ export class HttpAuth {
 
     const user= localStorage.getItem("user")
     this.currentUser.next(user ? JSON.parse(user): null)
+    console.log(`User from local storage:`, user, `Token from local storage:`, token)
+    
 
     return {
       token,
@@ -98,7 +104,7 @@ export class HttpAuth {
     return this.http.get<any>('http://localhost:3000/auth/renew-token', {headers})
     .pipe(
       map((response)=>{
-        if(!response.token && !response){
+        if(!response || !response.token ){
           return false
         }
         this.saveLocalStorage(response.token, response.user)

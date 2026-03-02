@@ -1,7 +1,7 @@
 export interface Users {
   _id: string;
   role: string;
-  name: string;
+  userName: string;
   description: string;
   phone: number;
   location: string;

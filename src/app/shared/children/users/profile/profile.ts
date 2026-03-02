@@ -4,6 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpUsers } from '../../../../core/services/http-users';
 
+
 @Component({
   selector: 'user-profile',
   imports: [ AsyncPipe],
@@ -12,7 +13,7 @@ import { HttpUsers } from '../../../../core/services/http-users';
 })
 export class Profile {
 
-  posts: any[] = [];
+  posts!: any;
   editMode: boolean = false;
 
   constructor( 
@@ -20,7 +21,9 @@ export class Profile {
     public httpUser: HttpUsers,
     private router: Router ) {}
 
-
+  ngOnInit(): void {
+    
+  }
 
   editProfile() {
     this.editMode = true;
@@ -30,8 +33,15 @@ export class Profile {
     this.editMode = false;
   }
 
-  deleteProfile() {
-    this.httpUser.deleteUser
+  deleteProfile(id:string) {
+   
+    this.httpUser.deleteUser(id).subscribe({
+      next: (data) => {
+        console.log("Delete ID:", id);
+        console.log("data:", this.posts)
+      },
+      error: (error) => console.error('Error deleting the profile, please try again', error),      
+    })
   }
 
 }

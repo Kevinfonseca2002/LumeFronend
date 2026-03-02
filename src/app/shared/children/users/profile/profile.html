@@ -1,33 +1,32 @@
 @if (httpAuth.currentUser$ | async; as user) {
     <p>Current User: {{ user.name }}</p>
-  } @else {
-    <p>No user is currently logged in.</p>  
-  }
-
+  
 
 <button (click)="editProfile()">Edit Profile</button>
 @if (editMode) {
     <!-- TODO: Formulario de edición de perfil -->
   <button (click)="cancelEditProfile()">Cancel Edit</button>
-} @else {
+} 
+@else {
   <section class="personal-info">
     <div class="backround"></div>
     <div class="profile-info">
+      <h3>{{user.name}}</h3>
       <div class="profile-picture"><img src="assets/Profiles/Person2.jpg" alt=""></div>
-    <h2>Nombre Usuario</h2>
-    <p>Descripción del usuario</p>
+
+    <p>{{user.description}}</p>
 
     <ul>
       <li>
         <div class="email-box">
         <div class="icon"><img src="assets/icons/profile-page/mail.png" alt="email" /></div>
-        <p>Email</p>
+        <p>{{user.email}}</p>
         </div>
       </li>
       <li>
         <div class="address-box">
         <div class="icon"><img src="assets/icons/profile-page/address.png" alt="address" /></div>
-        <p>Direccion</p>
+        <p>{{user.location}}</p>
         </div>
       </li>
     </ul>
@@ -46,17 +45,17 @@
   </div>
 </section>
 
-@for(post of posts; track post.id){
+@for(user of Object.entries(user); track user._id){
   <div class="post-box">
     <div class="icon"><img src="" alt=""></div>
-    <h3>Nombre</h3>
-    <p class="date">13 Jun 2025</p>
-    <h4>Taller Fotográfico</h4>
-    <p class="description">Soy una descripción del post</p>
+    <h3>{{user.name}}</h3>
+    <p class="date">{{user.date}}</p>
+    <h4>{{event.name}}</h4>
+    <p class="description">{{event.description}}</p>
     <div class="post-img"><img src="" alt=""></div>
   </div>
-
 }
+
 
 
 
@@ -66,6 +65,8 @@
   <h3>Delete Account</h3>
   <p>This action will delete permanently your account and data. Please be sure this is a wanted action</p>
   </div>
-  <!-- <button (click)="deleteProfile()">Delete</button> -->
+  <button (click)="deleteProfile(this.posts._id)">Delete</button>
 </section>
+
+}
 

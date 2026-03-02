@@ -23,7 +23,7 @@ export const roleGuard: CanActivateFn = async (route, state) => {
     return true;
   }
 
-  if(role && allowedRoles.include(role)){
+  if(role && allowedRoles.includes(role)){
     return true
   }
 

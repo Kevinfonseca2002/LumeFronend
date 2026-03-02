@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpAuth } from './http-auth';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,14 @@ export class HttpUsers {
   }
 
   getAllUsers(){
-    return this.http.get("http://localhost:3000/users", { headers: this.httpAuth.getHeaders()})
+    return this.http.get("http://localhost:3000/users", { headers: this.httpAuth.getHeaders()}).pipe(
+      map (data)=>{
+        data.getUsers
+      },
+      tap (data)=>{
+        console.log(data)
+      }
+    )
   }
 
   getUserById(id: string){
@@ -26,7 +34,14 @@ export class HttpUsers {
   }
 
   deleteUser(id: string){
-    return this.http.delete(`http://localhost:3000/users/${id}`, { headers: this.httpAuth.getHeaders()})
+    return this.http.delete(`http://localhost:3000/users/${id}`, { headers: this.httpAuth.getHeaders()}).pipe(
+      map (data)=>{
+        data.deletedUserById
+      },
+      tap (data)=>{
+        console.log(data);
+      }
+    )
   }
   
   updateUser(id: string, updatedData: any){
