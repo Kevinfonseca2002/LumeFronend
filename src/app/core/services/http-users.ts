@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpAuth } from './http-auth';
-import { map } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,37 +14,35 @@ export class HttpUsers {
   ) { 
   }
 
-  createUser(newUser: any){
+  createUser(newUser: any):Observable<any>{
     return this.http.post("http://localhost:3000/users", newUser, { headers: this.httpAuth.getHeaders()})
   }
 
-  getAllUsers(){
-    return this.http.get("http://localhost:3000/users", { headers: this.httpAuth.getHeaders()}).pipe(
-      map (data)=>{
+  getAllUsers():Observable<any>{
+    return this.http.get<any>("http://localhost:3000/users", { headers: this.httpAuth.getHeaders()}).pipe(
+      map ((data)=>{
         data.getUsers
-      },
-      tap (data)=>{
+      }),
+      tap ((data)=>{
         console.log(data)
-      }
+      })
     )
   }
 
-  getUserById(id: string){
+  getUserById(id: string):Observable<any>{
     return this.http.get(`http://localhost:3000/users/${id}`, { headers: this.httpAuth.getHeaders()})
   }
 
-  deleteUser(id: string){
+  deleteUser(id: string):Observable<any>{
     return this.http.delete(`http://localhost:3000/users/${id}`, { headers: this.httpAuth.getHeaders()}).pipe(
-      map (data)=>{
-        data.deletedUserById
-      },
-      tap (data)=>{
-        console.log(data);
-      }
+      tap ((data)=>{
+        this.httpAuth.clearLocalStorageData()
+      })
     )
+
   }
   
-  updateUser(id: string, updatedData: any){
+  updateUser(id: string, updatedData: any):Observable<any>{
     return this.http.put(`http://localhost:3000/users/${id}`, updatedData, { headers: this.httpAuth.getHeaders()})
   }
   

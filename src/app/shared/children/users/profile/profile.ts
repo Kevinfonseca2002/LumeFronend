@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { HttpAuth } from '../../../../core/services/http-auth';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpUsers } from '../../../../core/services/http-users';
+import { HttpPosts } from '../../../../core/services/http.posts';
 
 
 @Component({
   selector: 'user-profile',
-  imports: [ AsyncPipe],
+  imports: [ AsyncPipe, JsonPipe],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -19,7 +20,10 @@ export class Profile {
   constructor( 
     public httpAuth: HttpAuth,
     public httpUser: HttpUsers,
-    private router: Router ) {}
+    public httpPost: HttpPosts,
+    private router: Router ) {
+      this.posts=this.populatePosts()
+    }
 
   ngOnInit(): void {
     
@@ -33,14 +37,21 @@ export class Profile {
     this.editMode = false;
   }
 
-  deleteProfile(id:string) {
+  deleteProfile(id:string | undefined) {
    
-    this.httpUser.deleteUser(id).subscribe({
+    this.httpUser.deleteUser(`${id}`).subscribe({
       next: (data) => {
         console.log("Delete ID:", id);
         console.log("data:", this.posts)
       },
       error: (error) => console.error('Error deleting the profile, please try again', error),      
+    })
+  }
+
+  populatePosts(){
+    this.httpPost.findAllPost().subscribe({
+      next: data => {console.log(data)},
+      error: error => {console.error(error)},
     })
   }
 

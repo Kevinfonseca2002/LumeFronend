@@ -65,7 +65,6 @@ export class HttpAuth {
 
     const user= localStorage.getItem("user")
     this.currentUser.next(user ? JSON.parse(user): null)
-    console.log(`User from local storage:`, user, `Token from local storage:`, token)
     
 
     return {

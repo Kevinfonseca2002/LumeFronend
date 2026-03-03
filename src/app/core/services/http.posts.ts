@@ -11,26 +11,34 @@ constructor(
   private http:HttpClient
 ){}
 
-createPost(input:any):Observable<never[] | any>{
-  this.http.post("http://localhost:3000/posts",input).pipe(
-    map (data)=>{data.PostById}
-    tap (data)=>{console.log(data)},
+createPost(input:any):Observable<any>{
+  return this.http.post<any>("http://localhost:3000/posts",input)
+}
+
+findAllPost():Observable<any>{
+  return this.http.get<any>("http://localhost:3000/posts").pipe(
+    // tap( data => {
+    //   console.log(data)
+    // }),
+    map ((data)=> data.allPosts),
+    // tap ((data)=>{
+    //   console.log(data)
+
+    // })
   )
 }
 
-findAllPost(){
-  this.http.get("http://localhost:3000/posts").pipe(
-    map (data)=>{data.allPosts}
-    tap (data)=>{console.log(data)}
+deletePost(id:string | null):Observable<any>{
+  return this.http.delete(`http://localhost:3000/posts${id}`)
+}
+
+patchPost(id:string, updatedData: any):Observable<any>{
+  return this.http.patch<any>(`http://localhost:3000/posts${id}`, updatedData).pipe(
+    map ((data)=>{data.PostById}),
+    tap ((data)=>{
+      console.log(data)
+      return data})
   )
-}
-
-deletePost(id:string | null){
-  this.http.delete(`http://localhost:3000/posts${id}`)
-}
-
-patchPost(id:string, updatedData: any){
-  this.http.patch(`http://localhost:3000/posts${id}`, updatedData)
 }
   
 }

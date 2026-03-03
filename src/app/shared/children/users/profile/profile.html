@@ -1,5 +1,9 @@
+<pre>
+  {{ posts | json}}
+</pre>
+
 @if (httpAuth.currentUser$ | async; as user) {
-    <p>Current User: {{ user.name }}</p>
+    <p>Current User: {{ user.userName }}</p>
   
 
 <button (click)="editProfile()">Edit Profile</button>
@@ -11,7 +15,7 @@
   <section class="personal-info">
     <div class="backround"></div>
     <div class="profile-info">
-      <h3>{{user.name}}</h3>
+      <h3>{{user.userName}}</h3>
       <div class="profile-picture"><img src="assets/Profiles/Person2.jpg" alt=""></div>
 
     <p>{{user.description}}</p>
@@ -45,13 +49,13 @@
   </div>
 </section>
 
-@for(user of Object.entries(user); track user._id){
+@for(post of posts; track post._id){
   <div class="post-box">
     <div class="icon"><img src="" alt=""></div>
-    <h3>{{user.name}}</h3>
-    <p class="date">{{user.date}}</p>
-    <h4>{{event.name}}</h4>
-    <p class="description">{{event.description}}</p>
+    <h3>{{post.userName.userName}}</h3>
+    <p class="date">{{post.createdAt}}</p>
+    <h4>{{post.eventName.eventName}}</h4>
+    <p class="description">{{post.eventName.eventDescription}}</p>
     <div class="post-img"><img src="" alt=""></div>
   </div>
 }
@@ -65,7 +69,7 @@
   <h3>Delete Account</h3>
   <p>This action will delete permanently your account and data. Please be sure this is a wanted action</p>
   </div>
-  <button (click)="deleteProfile(this.posts._id)">Delete</button>
+  <button (click)="deleteProfile(user._id)">Delete</button>
 </section>
 
 }
