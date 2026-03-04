@@ -1,0 +1,33 @@
+.headerStyle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 2rem;
+    background: linear-gradient(to right, rgb(168, 85, 247), rgb(236, 72, 153));
+    border-radius: 1rem;
+    gap: 5rem;
+    margin: 8rem auto 0 auto;
+
+    a{
+        text-decoration: none;
+        text-align: center;
+        border-radius: 1rem;
+        color: black;
+        font-weight: bold;
+        color: white;
+        -webkit-text-stroke: 0.3px black;
+        padding: 0.2rem;
+        width: 5rem;
+        transition: 0.2s;
+
+        &:hover {
+            background-color: white;
+            transform: scale(1.1);
+            -webkit-text-stroke: 0px;
+            color: black;
+            border: 1px solid black;
+        }
+    }
+}

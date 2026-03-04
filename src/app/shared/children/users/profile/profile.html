@@ -1,76 +1,86 @@
-<pre>
-  {{ posts | json}}
-</pre>
+<!-- <pre>
+  {{ posts | async}}
+</pre> -->
+
+<button class="btn example">Si pesa mas que un pollo</button>
 
 @if (httpAuth.currentUser$ | async; as user) {
-    <p>Current User: {{ user.userName }}</p>
-  
+  <p>Current User: {{ user.userName }}</p>
 
-<button (click)="editProfile()">Edit Profile</button>
-@if (editMode) {
+  @if (editMode) {
     <!-- TODO: Formulario de edición de perfil -->
-  <button (click)="cancelEditProfile()">Cancel Edit</button>
-} 
-@else {
-  <section class="personal-info">
-    <div class="backround"></div>
-    <div class="profile-info">
-      <h3>{{user.userName}}</h3>
-      <div class="profile-picture"><img src="assets/Profiles/Person2.jpg" alt=""></div>
+    <button (click)="cancelEditProfile()">Cancel Edit</button>
+  } @else {
+    <section class="personal-info">
+      <button class="edit-button" (click)="editProfile()">
+        <div class="icon"><img src="assets/icons/profile-page/settings.png" alt=""></div>Edit Profile</button>
+      <div class="backround"></div>
+      <div class="profile-info">
+        <h3>{{ user.userName }}</h3>
+        <div class="profile-picture"><img src="assets/Profiles/Person2.jpg" alt="" /></div>
 
-    <p>{{user.description}}</p>
+        <p>{{ user.description }}</p>
 
-    <ul>
-      <li>
-        <div class="email-box">
-        <div class="icon"><img src="assets/icons/profile-page/mail.png" alt="email" /></div>
-        <p>{{user.email}}</p>
-        </div>
-      </li>
-      <li>
-        <div class="address-box">
-        <div class="icon"><img src="assets/icons/profile-page/address.png" alt="address" /></div>
-        <p>{{user.location}}</p>
-        </div>
-      </li>
-    </ul>
+        <ul>
+          <li>
+            <div class="email-box">
+              <div class="icon"><img src="assets/icons/profile-page/mail.png" alt="email" /></div>
+              <p>{{ user.email }}</p>
+            </div>
+          </li>
+          <li>
+            <div class="address-box">
+              <div class="icon">
+                <img src="assets/icons/profile-page/address.png" alt="address" />
+              </div>
+              <p>{{ user.location }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  }
+
+  <section class="estadistics">
+    <div class="events">
+      <h3>Instagram</h3>
+      <p>{{user.instagramLink}}</p>
+    </div>
+    <div class="connections">
+      <h3>Facebook</h3>
+      <p>{{user.facebookLink}}</p>
+    </div>
+    <div class="events">
+      <h3>X</h3>
+      <p>{{user.xLink}}</p>
+    </div>
+    <div class="connections">
+      <h3>Tik Tok</h3>
+      <p>{{user.tiktokLink}}</p>
     </div>
   </section>
+
+  @for (post of posts | async; track post._id) {
+    <div class="post-box">
+      @if (post.userName.userImg) {
+        <div class="icon"><img [src]="post.userName.userImg" alt="" /></div>
+      }
+      <h3>{{ post.userName.userName }}</h3>
+      <p class="date">{{ post.createdAt }}</p>
+      <h4>{{ post.eventName.eventName }}</h4>
+      <p class="description">{{ post.eventName.eventDescription }}</p>
+      <div class="post-img"><img src="" alt="" /></div>
+    </div>
+  }
+
+  <section class="delete-account">
+    <div class="delete-texts">
+      <h3>Delete Account</h3>
+      <p>
+        This action will delete permanently your account and data. Please be sure this is a wanted
+        action
+      </p>
+    </div>
+    <button (click)="deleteProfile(user._id)">Delete</button>
+  </section>
 }
-
-<section class="estadistics">
-  <div class="events">
-    <h3>Numero</h3>
-    <p>Attended Events</p>
-  </div>
-  <div class="connections">
-        <h3>Numero</h3>
-    <p>Connections</p>
-  </div>
-</section>
-
-@for(post of posts; track post._id){
-  <div class="post-box">
-    <div class="icon"><img src="" alt=""></div>
-    <h3>{{post.userName.userName}}</h3>
-    <p class="date">{{post.createdAt}}</p>
-    <h4>{{post.eventName.eventName}}</h4>
-    <p class="description">{{post.eventName.eventDescription}}</p>
-    <div class="post-img"><img src="" alt=""></div>
-  </div>
-}
-
-
-
-
-
-<section class="delete-account">
-  <div class="delete-texts">
-  <h3>Delete Account</h3>
-  <p>This action will delete permanently your account and data. Please be sure this is a wanted action</p>
-  </div>
-  <button (click)="deleteProfile(user._id)">Delete</button>
-</section>
-
-}
-
