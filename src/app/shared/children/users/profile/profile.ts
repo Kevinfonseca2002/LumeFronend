@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { HttpUsers } from '../../../../core/services/http-users';
 import { HttpPosts } from '../../../../core/services/http.posts';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { ProfileEditform } from '../../../layout/profile-editform/profile-editform';
 
 
 @Component({
   selector: 'user-profile',
-  imports: [ AsyncPipe, JsonPipe],
+  imports: [ AsyncPipe, JsonPipe, ProfileEditform],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })

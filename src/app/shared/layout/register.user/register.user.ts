@@ -14,7 +14,7 @@ export class RegisterUser {
   constructor(private httpAuth: HttpAuth) {
     this.formData = new FormGroup({
       role: new FormControl('user'),
-      name: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       phone: new FormControl(0, [Validators.required]),

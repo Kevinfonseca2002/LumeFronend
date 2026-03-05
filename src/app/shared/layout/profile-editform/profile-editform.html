@@ -1,0 +1,34 @@
+<form 
+[formGroup]="editForm"
+(click)="editProfile()">
+  <section class="personal-info">
+    <div class="backround"></div>
+    <div class="profile-info">
+        <label for="userName">Name</label>
+      <input type="text" formControlName="userName">
+      <div class="profile-picture"><img src="assets/Profiles/Person2.jpg" alt="" /></div>
+        <label for="description">Description</label>
+      <textarea formControlName="description"></textarea>
+
+      <ul>
+        <li>
+          <div class="email-box">
+            <div class="icon"><img src="assets/icons/profile-page/mail.png" alt="email" /></div>
+            <label for="email">Email</label>
+            <input type="email" formControlName="email">
+          </div>
+        </li>
+        <li>
+          <div class="address-box">
+            <div class="icon">
+              <img src="assets/icons/profile-page/address.png" alt="address" />
+            </div>
+            <label for="location">Location</label>
+            <input type="text" formControlName="location">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <button type="submit">Submit</button>
+</form>

@@ -2,18 +2,18 @@
   {{ posts | async}}
 </pre> -->
 
-<button class="btn example">Si pesa mas que un pollo</button>
-
 @if (httpAuth.currentUser$ | async; as user) {
   <p>Current User: {{ user.userName }}</p>
-
+  
   @if (editMode) {
     <!-- TODO: Formulario de edición de perfil -->
+    
+    <editForm></editForm>
     <button (click)="cancelEditProfile()">Cancel Edit</button>
   } @else {
     <section class="personal-info">
-      <button class="edit-button" (click)="editProfile()">
-        <div class="icon"><img src="assets/icons/profile-page/settings.png" alt=""></div>Edit Profile</button>
+      @if (!this.editMode) {
+      <button class="edit-button" (click)="editProfile()"> <div class="icon"><img src="assets/icons/profile-page/settings.png" alt=""></div>Edit Profile</button>}
       <div class="backround"></div>
       <div class="profile-info">
         <h3>{{ user.userName }}</h3>

@@ -42,8 +42,11 @@ export class HttpUsers {
 
   }
   
-  updateUser(id: string, updatedData: any):Observable<any>{
-    return this.http.put(`http://localhost:3000/users/${id}`, updatedData, { headers: this.httpAuth.getHeaders()})
+  updateUser(id: string | undefined, updatedData: any ):Observable<any>{
+
+    console.log(id, updatedData)
+    
+    return this.http.patch(`http://localhost:3000/users/${id}`, updatedData, { headers: this.httpAuth.getHeaders()})
   }
   
 }
