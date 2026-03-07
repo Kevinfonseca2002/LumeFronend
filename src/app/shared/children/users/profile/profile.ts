@@ -10,7 +10,7 @@ import { ProfileEditform } from '../../../layout/profile-editform/profile-editfo
 
 @Component({
   selector: 'user-profile',
-  imports: [ AsyncPipe, JsonPipe, ProfileEditform],
+  imports: [ AsyncPipe, ProfileEditform],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -52,11 +52,6 @@ export class Profile {
     })
   }
 
-  // populatePosts(){
-  //   this.httpPost.findAllPost().subscribe({
-  //     next: data => {console.log(data)},
-  //     error: error => {console.error(error)},
-  //   })
-  // }
+
 
 }

@@ -7,11 +7,11 @@ export interface Register {
   location: string;
   email: string;
   password: string;
-  facebookLink: string;
-  instagramLink: string;
-  xLink: string;
-  tiktokLink: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  facebookLink?: string;
+  instagramLink?: string;
+  xLink?: string;
+  tiktokLink?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
 }

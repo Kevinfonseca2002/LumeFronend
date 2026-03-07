@@ -45,7 +45,7 @@ export class HttpAuth {
             this.currentToken.next(data.token)
             this.currentUser.next(data.user)
             this.saveLocalStorage(data.token, data.user)
-            this.router.navigate(["feed"])
+            this.router.navigate(["feed/main"])
           }
         }),
         catchError(error=> of ([]))
@@ -84,6 +84,8 @@ export class HttpAuth {
   logout(){
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+    this.currentToken.next(null)
+    this.currentUser.next(null)
   }
 
   checkAuthStatus():Observable<boolean>{
@@ -126,4 +128,11 @@ export class HttpAuth {
     const headers = new HttpHeaders().set("Authorization",token)
     return headers;
   }  
+
+  getRole(){
+    return this.currentUser$.pipe(
+      tap ((data=>console.log(data))),
+      map ((data=> data?.role))
+    )
+  }
 }

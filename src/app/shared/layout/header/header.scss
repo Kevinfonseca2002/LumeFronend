@@ -1,4 +1,49 @@
-nav {
+.user-header{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    position: relative;
+
+    &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1.3rem; /* Grosor del borde */
+    background: linear-gradient(
+      to top,
+      rgb(168, 85, 247),
+      rgb(236, 72, 153),
+      transparent
+    );
+  }
+
+  .logo{
+    cursor: pointer;
+  }
+  
+    
+
+    button {
+        position: absolute;
+        width: 7rem;
+        height: 2rem;
+        top: 2rem;
+        border-radius: 1rem;
+        border: solid 0.1rem rgb(255, 86, 86);
+        background-color: rgb(255, 173, 173);
+        font-weight: bold;
+        color: white;
+        -webkit-text-stroke: black 0.01rem;
+        right: 10rem;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+            background-color: red;
+        }
+    }
+    
 }
