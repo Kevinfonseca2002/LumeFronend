@@ -2,21 +2,31 @@
 <p>Show your opinions and connect with others in our community feed.</p>
 
 <section class="create-post">
-    <form action="">
+    <form 
+    [formGroup]="postsForm"
+    (click)="onSubmit()"
+    >
     <div class="icon"><img src="assets/Profiles/Person1.jpg" alt=""></div>
-    <textarea name="" id=""></textarea>
-    <button type=><input type="file" (change)="captureFile($event)"></button>
+    <textarea formControlName="comment"></textarea>
+
+    postImg
     <button type="submit"><div class="icon"><img src="assets/icons/feed/send.png" alt=""></div>Share</button>
     </form>
 </section>
 
-@for( post of posts; track post.id ) {
-    <section class="post">
-        <div class="post-image"><img src="" alt=""></div>
-        <p>timestamp</p>
-        <div class="expression-buttons">
-            <button class="like"></button>
-            <button class="comment"></button>
+  @for (post of posts | async; track post._id) {
+    <div class="post-box">
+      <div class="user-information">
+        <div class="icon"><img [src]="post.userName.userImg" alt="" /></div>
+        <div class="user-event">
+          <h3>{{ post.userName.userName }}</h3>
+          <p class="date">{{ post.createdAt }}</p>
+          <h4>{{ post.eventName.eventName }}</h4>
         </div>
-    </section>
-}
+      </div>
+      <p class="description">{{ post.eventName.eventDescription }}</p>
+      @if (post.postImg) {
+        <div class="post-img"><img src="" alt="" /></div>
+      }
+    </div>
+  }

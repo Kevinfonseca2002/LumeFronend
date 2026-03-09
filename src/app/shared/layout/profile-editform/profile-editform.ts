@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { ReactiveFormsModule, FormGroup,FormControl } from '@angular/forms';
 import { HttpUsers } from '../../../core/services/http-users';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpAuth } from '../../../core/services/http-auth';
 import { BehaviorSubject, firstValueFrom, Observable, switchMap } from 'rxjs';
+import { Profile } from '../../children/users/profile/profile';
 
 @Component({
   selector: 'editForm',
@@ -22,7 +23,8 @@ export class ProfileEditform {
   constructor(
     private httpUsers: HttpUsers,
     private activatedRoute: ActivatedRoute,
-    public httpAuth: HttpAuth
+    public httpAuth: HttpAuth,
+    private profile: Profile
   ){
     this.editForm = new FormGroup ({
       userName: new FormControl("",),
@@ -62,13 +64,9 @@ export class ProfileEditform {
 
   }
 
-  editProfile(){
-
-    console.log(this.id)
+  onSubmit(){
     this.httpUsers.updateUser(this.id,this.editForm.value).subscribe({
-      next: data => {
-        console.log( data )
-      },
+      next: data => this.profile.editMode= false,
       error: error => console.error(error)
     })
   }

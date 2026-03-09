@@ -3,17 +3,21 @@
 </pre> -->
 
 @if (httpAuth.currentUser$ | async; as user) {
-  <p>Current User: {{ user.userName }}</p>
-  
+  <!-- <p>Current User: {{ user.userName }}</p> -->
+
   @if (editMode) {
     <!-- TODO: Formulario de edición de perfil -->
-    
+
     <editForm></editForm>
-    <button (click)="cancelEditProfile()">Cancel Edit</button>
+    <button class="cancel-edit"(click)="cancelEditProfile()">Cancel Edit</button>
   } @else {
     <section class="personal-info">
       @if (!this.editMode) {
-      <button class="edit-button" (click)="editProfile()"> <div class="icon"><img src="assets/icons/profile-page/settings.png" alt=""></div>Edit Profile</button>}
+        <button class="edit-button" (click)="editProfile()">
+          <div class="icon"><img src="assets/icons/profile-page/settings.png" alt="" /></div>
+          Edit Profile
+        </button>
+      }
       <div class="backround"></div>
       <div class="profile-info">
         <h3>{{ user.userName }}</h3>
@@ -42,34 +46,46 @@
   }
 
   <section class="estadistics">
-    <div class="events">
-      <h3>Instagram</h3>
-      <p>{{user.instagramLink}}</p>
-    </div>
-    <div class="connections">
-      <h3>Facebook</h3>
-      <p>{{user.facebookLink}}</p>
-    </div>
-    <div class="events">
-      <h3>X</h3>
-      <p>{{user.xLink}}</p>
-    </div>
-    <div class="connections">
-      <h3>Tik Tok</h3>
-      <p>{{user.tiktokLink}}</p>
-    </div>
+    @if (user.instagramLink) {
+      <div class="events">
+        <h3>Instagram</h3>
+        <p>{{ user.instagramLink }}</p>
+      </div>
+    }
+    @if (user.facebookLink) {
+      <div class="connections">
+        <h3>Facebook</h3>
+        <p>{{ user.facebookLink }}</p>
+      </div>
+    }
+    @if (user.xLink) {
+      <div class="events">
+        <h3>X</h3>
+        <p>{{ user.xLink }}</p>
+      </div>
+    }
+    @if (user.tiktokLink) {
+      <div class="connections">
+        <h3>Tik Tok</h3>
+        <p>{{ user.tiktokLink }}</p>
+      </div>
+    }
   </section>
 
   @for (post of posts | async; track post._id) {
     <div class="post-box">
-      @if (post.userName.userImg) {
+      <div class="user-information">
         <div class="icon"><img [src]="post.userName.userImg" alt="" /></div>
-      }
-      <h3>{{ post.userName.userName }}</h3>
-      <p class="date">{{ post.createdAt }}</p>
-      <h4>{{ post.eventName.eventName }}</h4>
+        <div class="user-event">
+          <h3>{{ post.userName.userName }}</h3>
+          <p class="date">{{ post.createdAt }}</p>
+          <h4>{{ post.eventName.eventName }}</h4>
+        </div>
+      </div>
       <p class="description">{{ post.eventName.eventDescription }}</p>
-      <div class="post-img"><img src="" alt="" /></div>
+      @if (post.postImg) {
+        <div class="post-img"><img src="" alt="" /></div>
+      }
     </div>
   }
 

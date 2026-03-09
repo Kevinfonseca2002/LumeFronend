@@ -6,6 +6,27 @@
     vertical-align: middle;
 
 }
+.cancel-edit{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 1rem;
+    border: none;
+    background-color:red;
+    height: 2.5rem;
+    width: 10rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 1000;
+    margin: 1rem auto;
+
+        &:hover{
+      transform: scale(1.1)
+    }
+}
 
 .personal-info {
   display: flex;
@@ -176,11 +197,10 @@
 
 .post-box {
   display: flex;
-  position: relative;
   flex-direction: column;
   align-items: center;
   width: 90%;
-  height: 40rem;
+  height: auto;
   margin: 2rem auto;
   border: solid 1px #898989;
   border-radius: 1rem;
@@ -191,10 +211,25 @@
     transition: box-shadow 0.3s ease-in-out;
   }
 
+  .user-information{
+    display: flex;
+    width: 95%;
+    flex-direction: row;
+    justify-content:start;
+
+    .user-event{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+
+      p, h3, h4 {
+        margin: 0.1rem 0 0 1.3rem
+      }
+
+    }
+  }
+
   .icon {
-    position: absolute;
-    top: 3rem;
-    left: 3rem;
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -203,38 +238,23 @@
     }
   }
   h3 {
-    position: absolute;
-    top: 3rem;
-    left: 8rem;
     margin-top: 0.5rem;
     font-size: 1.2rem;
   }
   .date {
-    position: absolute;
-    top: 4.2rem;
-    left: 8rem;
     font-size: 0.9rem;
     color: #898989;
   }
   h4 {
-    position: absolute;
-    top: 5rem;
-    left: 9rem;
     font-weight: bold;
     color: rgb(168, 85, 247);
   }
 
   .description {
-    position: absolute;
-    top: 9rem;
-    left: 3rem;
     width: 90%;
     color: black;
   }
   .post-img {
-    position: absolute;
-    top: 12rem;
-    left: 3rem;
     width: 92.5%;
     height: 30rem;
     border: solid 1px rgb(150, 150, 150);

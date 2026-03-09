@@ -48,7 +48,8 @@ export class Profile {
         console.log("Delete ID:", id);
         console.log("data:", this.posts)
       },
-      error: (error) => console.error('Error deleting the profile, please try again', error),      
+      error: (error) => console.error('Error deleting the profile, please try again', error), 
+      complete: ()=>this.router.navigate(["home"])     
     })
   }
 

@@ -1,18 +1,8 @@
 <form 
 [formGroup]="formData"
 (ngSubmit)="onSubmit()">
-    <h1>Iniciar Sesion</h1>
-    <p>Elige cómo quieres ingresar a Lume</p>
-  <div class="overallRol">
-    <div class="rol">
-      <label for="rol">Usuario</label>
-      <input type="radio" name="" id="" />
-    </div>
-    <div class="rol">
-      <label for="rol">Tienda</label>
-      <input type="radio" name="" id="" />
-    </div>
-  </div>
+    <h1>Log In</h1>
+    <p>Enter your email and password to log in</p>
   <div class="email">
     <label for="email">Email</label>
     <input type="email" formControlName="email" />
