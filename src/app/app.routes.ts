@@ -13,19 +13,46 @@ import { Profile } from './shared/children/users/profile/profile';
 import { Chats } from './shared/children/users/chats/chats';
 import { Events } from './shared/children/users/events/events';
 import { Feed } from './shared/children/users/feed/feed';
+import { Dashboard } from './shared/children/stores/dashboard/dashboard';
+import { Attendees } from './shared/children/stores/attendees/attendees';
+import { Analitics } from './shared/children/stores/analitics/analitics';
+import { StoreEvents } from './shared/children/stores/store-events/store-events';
+import { Settings } from './shared/children/stores/settings/settings';
 
 export const routes: Routes = [
     // Cuando esta Logueado
     { 
     path: "admin",
     component: StoreInterface,
-    canActivate: [authGuard, roleGuard],
-    data: { roles: ['store']}
+    // canActivate: [authGuard, roleGuard],
+    data: { roles: ['store']},
+    children:[
+        {
+            path: 'dashboard',
+            component: Dashboard
+        },
+        {
+            path: 'attendees',
+            component:Attendees
+        },
+        {
+            path:'analitics',
+            component: Analitics
+        },
+        {
+            path: 'events',
+            component: StoreEvents
+        },
+        {
+            path: 'settings',
+            component: Settings
+        }
+
+    ]
     },
     { 
     path: "feed", 
     component: PersonInterface,
-    //TODO: Hacer que solo los usuarios con rol "user" puedan acceder a esta ruta 
     // canActivate: [authGuard, roleGuard],
     data: { roles: ['user']},
     children: [

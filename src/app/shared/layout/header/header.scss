@@ -47,3 +47,56 @@
     }
     
 }
+
+.store-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    background-color: orange;
+    padding: 1rem;
+    gap: 2rem;
+
+      .logo{
+    cursor: pointer;
+    margin-left: 3rem;
+  }
+  .store-information{
+    h3{
+      font-weight: bolder;
+      font-size: 2rem;
+      color: white;
+      margin: 0;
+    }
+    p {
+      font-size: 1.5rem;
+      color: rgba(230, 230, 230, 0.812);
+      margin: 0
+
+    }
+
+
+  }
+  .logout{
+    position: absolute;
+    font-size: 1.5rem;
+    top: 3rem;
+    right: 10rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover{
+      color:rgba(230, 230, 230, 0.812);
+    }
+  }
+
+  }
+
+
+  
+    
+
+   
+    
