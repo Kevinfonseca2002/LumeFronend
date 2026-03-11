@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Header } from '../../../shared/layout/header/header';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-store-interface',
-  imports: [RouterOutlet, Header],
+  imports: [RouterOutlet, Header, RouterLink],
   templateUrl: './store-interface.html',
   styleUrl: './store-interface.scss',
 })

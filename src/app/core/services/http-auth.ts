@@ -46,12 +46,7 @@ export class HttpAuth {
             this.currentUser.next(data.user)
             this.saveLocalStorage(data.token, data.user)
 
-            if(data.user.role="store"){
-            this.router.navigate(["admin/dashboard"])
-            }
-            if(data.user.role="user"){
-            this.router.navigate(["admin/dashboard"])
-            }
+            this.router.navigate(["/admin/dashboard"])
           }
         }),
         catchError(error=> of ([]))
