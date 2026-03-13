@@ -46,8 +46,21 @@ export class HttpAuth {
             this.currentUser.next(data.user)
             this.saveLocalStorage(data.token, data.user)
 
+           if(data?.user?.role == "store"){
             this.router.navigate(["/admin/dashboard"])
+            return true
+           } 
+           else if(data?.user?.role == "user"){
+            this.router.navigate(["/feed/main"])
+            return true
+           }
+           else {
+            this.clearLocalStorageData()
+            this.router.navigate(["home"])
+            return false
+           }
           }
+          return false
         }),
         catchError(error=> of ([]))
       )
@@ -105,6 +118,9 @@ export class HttpAuth {
     //Paso 3: Realizar una solicitud al backend para validar el token (Renew Token)
     return this.http.get<any>('http://localhost:3000/auth/renew-token', {headers})
     .pipe(
+      tap((response)=>{
+        console.log(response)
+      }),
       map((response)=>{
         if(!response || !response.token ){
           return false

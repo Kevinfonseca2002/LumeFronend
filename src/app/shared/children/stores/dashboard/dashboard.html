@@ -1,14 +1,17 @@
 <h1 class="title">Dashboard</h1>
 <p class="dash-description">Resumen de tu actividad</p>
 
+<!-- <button (click)="onSubmit()">prueba</button> -->
+
 <!-- Métricas superiores -->
+@if(this.attendees){
 <div class="dash-metrics-grid">
   <div class="dash-metric-card purple">
     <div class="dash-metric-top">
       <span class="dash-metric-icon purple-bg">📅</span>
       <span class="dash-trend">↗</span>
     </div>
-    <p class="dash-metric-value purple">2</p>
+    <p class="dash-metric-value purple">{{this.attendees.length}}</p>
     <p class="dash-metric-label">Eventos Próximos</p>
   </div>
   <div class="dash-metric-card blue">
@@ -19,14 +22,6 @@
     <p class="dash-metric-value blue">66</p>
     <p class="dash-metric-label">Total Asistentes</p>
   </div>
-  <div class="dash-metric-card green">
-    <div class="dash-metric-top">
-      <span class="dash-metric-icon green-bg">👁</span>
-      <span class="dash-trend">↗</span>
-    </div>
-    <p class="dash-metric-value green">479</p>
-    <p class="dash-metric-label">Visualizaciones</p>
-  </div>
   <div class="dash-metric-card orange">
     <div class="dash-metric-top">
       <span class="dash-metric-icon orange-bg">💳</span>
@@ -36,6 +31,7 @@
     <p class="dash-metric-label">Ingresos Totales</p>
   </div>
 </div>
+
 
 <!-- Sección inferior: dos columnas -->
 <div class="dash-bottom-grid">
@@ -88,3 +84,4 @@
   </div>
 
 </div>
+}
