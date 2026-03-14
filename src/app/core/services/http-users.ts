@@ -29,7 +29,7 @@ export class HttpUsers {
     )
   }
 
-  getUserById(id: string):Observable<any>{
+  getUserById(id: string | undefined):Observable<any>{
     return this.http.get(`http://localhost:3000/users/${id}`, { headers: this.httpAuth.getHeaders()})
   }
 

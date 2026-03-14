@@ -152,4 +152,11 @@ export class HttpAuth {
       map ((data=> data?.role))
     )
   }
+
+  getId():Observable<string | undefined>{
+    return this.currentUser$.pipe(
+      tap ((data=>console.log(data))),
+      map ((data=> data?._id))
+    )
+  }
 }

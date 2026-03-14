@@ -16,7 +16,7 @@ export class HttpAttendees {
   getAllAttendees():Observable<any>{
     return this.http.get<any>("http://localhost:3000/attendee",).pipe(
       tap ((data)=>console.log(data)),
-      map ((data)=>data.attendee)
+      map ((data)=>data.allAttendees)
     )
   }
 

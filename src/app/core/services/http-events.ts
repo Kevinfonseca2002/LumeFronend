@@ -19,5 +19,9 @@ export class HttpEvents {
     )
   )
   }
+
+  deleteEvent(id: string):Observable<any>{
+    return this.http.delete(`http://localhost:3000/events/${id}`)
+  }
   
 }

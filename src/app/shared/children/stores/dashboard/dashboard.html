@@ -4,31 +4,23 @@
 <!-- <button (click)="onSubmit()">prueba</button> -->
 
 <!-- Métricas superiores -->
-@if(this.attendees){
+
 <div class="dash-metrics-grid">
   <div class="dash-metric-card purple">
     <div class="dash-metric-top">
       <span class="dash-metric-icon purple-bg">📅</span>
       <span class="dash-trend">↗</span>
     </div>
-    <p class="dash-metric-value purple">{{this.attendees.length}}</p>
-    <p class="dash-metric-label">Eventos Próximos</p>
+    <p class="dash-metric-value purple">{{this.eventsByStore.length}}</p>
+    <p class="dash-metric-label">Upcoming events</p>
   </div>
   <div class="dash-metric-card blue">
     <div class="dash-metric-top">
       <span class="dash-metric-icon blue-bg">👥</span>
       <span class="dash-trend">↗</span>
     </div>
-    <p class="dash-metric-value blue">66</p>
-    <p class="dash-metric-label">Total Asistentes</p>
-  </div>
-  <div class="dash-metric-card orange">
-    <div class="dash-metric-top">
-      <span class="dash-metric-icon orange-bg">💳</span>
-      <span class="dash-trend">↗</span>
-    </div>
-    <p class="dash-metric-value orange">€2580</p>
-    <p class="dash-metric-label">Ingresos Totales</p>
+    <p class="dash-metric-value blue">{{this.attendees.length}}</p>
+    <p class="dash-metric-label">Total Attendees</p>
   </div>
 </div>
 
@@ -38,29 +30,27 @@
 
   <!-- Eventos recientes -->
   <div class="dash-card">
-    <h2 class="dash-card-title">Eventos Recientes</h2>
+    <h2 class="dash-card-title">Recent events</h2>
     <div class="event-list">
+      @for(event of eventsByStore; track $index){
       <div class="event-row">
         <div>
-          <p class="event-row-name">Taller de Fotografía Urbana</p>
-          <p class="event-row-sub">24 asistentes</p>
+          <p class="event-row-name">{{event.eventName}}</p>
+          <p class="event-row-sub">{{event?.attendees?.length}} asistentes</p>
         </div>
-        <span class="badge badge-proximo">Próximo</span>
-      </div>
-      <div class="event-row">
-        <div>
-          <p class="event-row-name">Sesión de Portfolio Review</p>
-          <p class="event-row-sub">12 asistentes</p>
+        <div class="event-actions">
+          <span class="badge badge-proximo">Próximo</span>
+          <button class="btn-delete" (click)="deleteEvent(event._id)" title="Eliminar evento">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+            </svg>
+          </button>
         </div>
-        <span class="badge badge-proximo">Próximo</span>
       </div>
-      <div class="event-row">
-        <div>
-          <p class="event-row-name">Masterclass Iluminación</p>
-          <p class="event-row-sub">30 asistentes</p>
-        </div>
-        <span class="badge badge-completado">Completado</span>
-      </div>
+      } @empty {
+        <p>No tienes eventos recientes</p>
+      }
     </div>
   </div>
 
@@ -84,4 +74,3 @@
   </div>
 
 </div>
-}
