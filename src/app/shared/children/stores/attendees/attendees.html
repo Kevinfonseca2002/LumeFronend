@@ -1,57 +1,49 @@
-<div class="attendees-header">
-  <div>
-    <h1 class="title">Asistentes</h1>
-    <p class="attendees-description">Gestiona los participantes de tus eventos</p>
+<div class="container">
+
+  <div class="header">
+      <div class="header-text-block">
+          <h1>Asistentes por Evento</h1>
+          <p>Gestiona los participantes de cada evento</p>
+      </div>
+
+      <button class="btn-primary">
+          <i class="fas fa-file-export"></i> Exportar Todo
+      </button>
   </div>
-  <button class="export-btn">⬇ Exportar Lista</button>
-</div>
 
-<div class="attendees-card">
-  <div class="attendees-card-header">
-    <h2 class="attendees-card-title">Lista de Asistentes</h2>
-    <span class="total-badge">3 total</span>
+@for(event of events; track $index){
+  <div class="event-card">
+      <div class="event-header">
+          <div>
+              <h2>
+                  {{event.eventName}}
+                  <span class="badge">{{event.status}}</span>
+              </h2>
+
+              <div class="event-info">
+                  <span><i class="fas fa-calendar-alt"></i> {{event.date | date:'dd MMMM yyyy'}}</span>
+                  <span><i class="fas fa-clock"></i> {{event.date | date:'HH:mm'}}</span>
+                  <span><i class="fas fa-users"></i> {{event.attendees.length}} asistentes</span>
+              </div>
+          </div>
+
+          <button class="btn-export">
+              <i class="fas fa-download"></i> Exportar
+          </button>
+      </div>
+
+      <div class="attendees">
+        @for(attendee of event.attendees; track $index){
+          <div class="person">
+              <img [src]="attendee.avatar" [alt]="attendee.name" class="person-avatar">
+              <div class="person-info">
+                  <h3>{{attendee.userName}}</h3>
+                  <p><i class="fas fa-envelope"></i> {{attendee.email}}</p>
+                   <small>Registrado: {{attendee.createdAt | date:'dd MMMM yyyy'}}</small>
+              </div>
+          </div>}
+      </div>
   </div>
+}
 
-  <div class="attendee-list">
-
-    <div class="attendee-row">
-      <img src="https://i.pravatar.cc/150?img=47" alt="María García" class="attendee-avatar">
-      <div class="attendee-info">
-        <p class="attendee-name">María García</p>
-        <p class="attendee-email">maria@email.com</p>
-        <p class="attendee-date">Registrado: 2026-01-15</p>
-      </div>
-      <div class="attendee-actions">
-        <span class="badge-checkin">✓ Check-in</span>
-        <button class="mail-btn">✉</button>
-      </div>
-    </div>
-
-    <div class="attendee-row">
-      <img src="https://i.pravatar.cc/150?img=12" alt="Carlos Ruiz" class="attendee-avatar">
-      <div class="attendee-info">
-        <p class="attendee-name">Carlos Ruiz</p>
-        <p class="attendee-email">carlos@email.com</p>
-        <p class="attendee-date">Registrado: 2026-01-14</p>
-      </div>
-      <div class="attendee-actions">
-        <span class="badge-pendiente">Pendiente</span>
-        <button class="mail-btn">✉</button>
-      </div>
-    </div>
-
-    <div class="attendee-row">
-      <img src="https://i.pravatar.cc/150?img=32" alt="Ana Martínez" class="attendee-avatar">
-      <div class="attendee-info">
-        <p class="attendee-name">Ana Martínez</p>
-        <p class="attendee-email">ana@email.com</p>
-        <p class="attendee-date">Registrado: 2026-01-16</p>
-      </div>
-      <div class="attendee-actions">
-        <span class="badge-checkin">✓ Check-in</span>
-        <button class="mail-btn">✉</button>
-      </div>
-    </div>
-
-  </div>
 </div>

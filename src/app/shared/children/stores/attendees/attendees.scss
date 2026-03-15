@@ -1,176 +1,251 @@
-/* ── Cabecera ── */
-.attendees-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1.8rem;
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  background: #f8fafc;
+  margin: 0;
+  color: #1a1a18;
+}
+
+.container {
   width: 100%;
   max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.title {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 700;
-  color: #1a1a18;
-  margin-bottom: 0.3rem;
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
 }
 
-.attendees-description {
-  font-size: 0.9rem;
-  color: #7a7870;
+.header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: -0.5px;
+}
+
+.header p {
   margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.export-btn {
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, #38bdf8, #3b82f6);
+/* BOTONES */
+.btn-primary {
+  background: #1a1a18;
   border: none;
-  border-radius: 10px;
+  color: white;
   padding: 0.75rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: opacity 0.2s, transform 0.1s;
-  white-space: nowrap;
-  margin-top: 2rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.export-btn:hover  { opacity: 0.9; transform: translateY(-1px); }
-.export-btn:active { transform: translateY(0); }
+.btn-primary:hover {
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px -1px rgba(0, 0, 0, 0.15);
+}
 
-/* ── Tarjeta contenedora ── */
-.attendees-card {
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 14px;
-  padding: 1.5rem 1.8rem;
-  width: 100%;
-  max-width: 900px;
+.btn-export {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: white;
+  color: #475569;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
 }
 
-.attendees-card-header {
+.btn-export:hover {
+  border-color: #cbd5e1;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+/* EVENT CARD */
+.event-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+}
+
+.event-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: linear-gradient(to right, #ffffff, #fdfbf7);
+  padding: 1.8rem 2rem;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.attendees-card-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #1a1a18;
+.event-header h2 {
   margin: 0;
-}
-
-.total-badge {
-  background: #a855f7;
-  color: #fff;
-  font-size: 0.78rem;
+  font-size: 1.2rem;
+  color: #0f172a;
   font-weight: 700;
-  padding: 0.3rem 0.85rem;
-  border-radius: 99px;
-}
-
-/* ── Lista ── */
-.attendee-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.attendee-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background: #fff;
-  border: 1px solid #e8e8e8;
+  gap: 0.8rem;
+}
+
+.badge {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid #bfdbfe;
+}
+
+.event-info {
+  margin-top: 0.8rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.event-info span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.event-info i {
+  color: #94a3b8;
+}
+
+/* LISTA */
+.attendees {
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* PERSONA */
+.person {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 1rem 1.2rem;
+  background: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.attendee-avatar {
-  width: 56px;
-  height: 56px;
+.person:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.person-avatar {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  margin-right: 1.2rem;
   object-fit: cover;
-  flex-shrink: 0;
+  border: 2px solid #f8fafc;
 }
 
-.attendee-info {
+.person-info {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
 }
 
-.attendee-name {
+.person-info h3 {
+  margin: 0;
   font-size: 0.95rem;
-  font-weight: 700;
-  color: #1a1a18;
-  margin: 0;
+  color: #0f172a;
+  font-weight: 600;
 }
 
-.attendee-email {
-  font-size: 0.82rem;
-  color: #555;
+.person-info p {
   margin: 0;
-}
-
-.attendee-date {
-  font-size: 0.78rem;
-  color: #aaa;
-  margin: 0;
-}
-
-/* ── Acciones ── */
-.attendee-actions {
+  color: #64748b;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  flex-shrink: 0;
+  gap: 0.4rem;
 }
 
-.badge-checkin {
-  font-size: 0.8rem;
+.person-info small {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+/* ACCIONES */
+.person-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.status {
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.status-pendiente {
+  background: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #fed7aa;
+}
+
+.status-checkin {
+  background: #f0fdf4;
   color: #16a34a;
-  background: #dcfce7;
   border: 1px solid #bbf7d0;
-  border-radius: 99px;
-  padding: 0.3rem 0.9rem;
-  white-space: nowrap;
 }
 
-.badge-pendiente {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #555;
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-radius: 99px;
-  padding: 0.3rem 0.9rem;
-  white-space: nowrap;
-}
-
-.mail-btn {
-  font-size: 1rem;
-  background: #f3f4f6;
-  border: none;
-  border-radius: 8px;
-  width: 2.2rem;
-  height: 2.2rem;
+.mail {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #64748b;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #555;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  font-size: 0.9rem;
 }
 
-.mail-btn:hover { background: #e5e7eb; }
+.mail:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}

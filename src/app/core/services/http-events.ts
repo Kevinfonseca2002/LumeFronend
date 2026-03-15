@@ -20,6 +20,10 @@ export class HttpEvents {
   )
   }
 
+  editEvent(id: string, event: any):Observable<any>{
+    return this.http.patch(`http://localhost:3000/events/${id}`, event)
+  }
+
   deleteEvent(id: string):Observable<any>{
     return this.http.delete(`http://localhost:3000/events/${id}`)
   }

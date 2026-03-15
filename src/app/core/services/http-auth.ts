@@ -136,13 +136,13 @@ export class HttpAuth {
   }
 
   getHeaders():any{
-    const {token}= this.getLocalStorageData()
+    const token= localStorage.getItem("token")
 
     if(!token){
-      this.clearLocalStorageData()
-      return of (false)
+      this.clearLocalStorageData();
+      return new HttpHeaders();
     }
-    const headers = new HttpHeaders().set("Authorization",token)
+    const headers = new HttpHeaders().set("Authorization", token)
     return headers;
   }  
 

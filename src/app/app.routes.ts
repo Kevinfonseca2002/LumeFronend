@@ -15,7 +15,6 @@ import { Events } from './shared/children/users/events/events';
 import { Feed } from './shared/children/users/feed/feed';
 import { Dashboard } from './shared/children/stores/dashboard/dashboard';
 import { Attendees } from './shared/children/stores/attendees/attendees';
-import { Analitics } from './shared/children/stores/analitics/analitics';
 import { StoreEvents } from './shared/children/stores/store-events/store-events';
 import { Settings } from './shared/children/stores/settings/settings';
 
@@ -34,10 +33,6 @@ export const routes: Routes = [
         {
             path: 'attendees',
             component:Attendees
-        },
-        {
-            path:'analitics',
-            component: Analitics
         },
         {
             path: 'events',
