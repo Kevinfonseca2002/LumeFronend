@@ -1,4 +1,4 @@
-@if (this.role == 'user') {
+@if (role == 'user') {
   <div class="user-header">
     <div class="logo" routerLink="/feed/main"><img src="/assets/images/LumeLogo.png" alt="" /></div>
 
@@ -9,8 +9,8 @@
    <div class="store-header">
     <div class="logo" routerLink="/feed/main"><img src="/assets/images/LumeLogo.png" alt="" /></div>
     <div class="store-information">
-      <h3>Nombre de la tienda</h3>
-      <p>Description Store</p>
+      <h3>{{storeData?.userName}}</h3>
+      <p>{{storeData?.description}}</p>
     </div>
 
     <div class="logout" (click)="onLogout()">Logout →|</div>

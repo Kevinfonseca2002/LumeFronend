@@ -1,11 +1,3 @@
-<!-- TODO: Logica FOR para duplicar los cuadros -->
-
-
-<div class="filter">
-    <button>All Events</button>
-    <button>Upcoming Events</button>
-    <button>Past</button>
-</div>
 
 <div class="card-position">
 @for(event of events ; track events){
@@ -17,12 +9,12 @@
     <p>{{event.eventDescription}}</p>
     
     <ul>
-        <li>{{event.date}}</li>
-        <li>{{event.date}}</li>
+        <li>{{event.date | date: 'dd MMMM yyyy'}}</li>
+        <li>{{event.date | date: 'HH:mm'}}</li>
         <li>{{event.location}}</li>
         <li>{{event.attendees}}</li>
     </ul>
-    <button (click)="prueba()">Asistir</button>
+    <button (click)="addAttendee(event._id)">Asistir</button>
 </div>
 }
 </div>

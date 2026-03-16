@@ -63,3 +63,248 @@ body, html{
       padding: 0 0 0 2rem;
     }
 }
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;                        // cubre toda la pantalla
+    background: rgba(0, 0, 0, 0.5); // fondo oscuro semitransparente
+    z-index: 100;
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // centra el modal
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 560px;
+    z-index: 101;                     // por encima del overlay
+    max-height: 90vh;
+    overflow-y: auto;                 // scroll si el contenido es largo
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.modal-close {
+    background: #f1f5f9;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    
+    &:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+      transform: rotate(90deg);
+    }
+}
+
+/* Estilos de formulario Modal */
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0 0 0.3rem 0;
+}
+
+.modal-header p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.modal-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+  
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+    }
+  
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: #1e293b;
+      background-color: #f8fafc;
+      transition: all 0.2s ease;
+      outline: none;
+  
+      &:hover {
+        border-color: #94a3b8;
+      }
+  
+      &:focus {
+        border-color: #3b82f6;
+        background-color: white;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+      
+      &::placeholder {
+        color: #94a3b8;
+      }
+    }
+  
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+}
+  
+.form-row {
+    display: flex;
+    gap: 1.2rem;
+    
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
+}
+  
+.form-check {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    
+    input[type="checkbox"] {
+      width: 1.2rem;
+      height: 1.2rem;
+      cursor: pointer;
+      accent-color: #f97316;
+    }
+  
+    label {
+      cursor: pointer;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+}
+  
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+  
+    button {
+      flex: 1;
+      padding: 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      font-family: inherit;
+    }
+  
+    .btn-cancel {
+      background-color: transparent;
+      border: 1.5px solid #cbd5e1;
+      color: #475569;
+  
+      &:hover {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        border-color: #94a3b8;
+      }
+    }
+  
+    .btn-submit {
+      background: #1a1a18;
+      color: white;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  
+      &:hover:not(:disabled) {
+        background: #333;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px -1px rgba(0, 0, 0, 0.2);
+      }
+  
+      &:disabled {
+        background: #e2e8f0;
+        color: #94a3b8;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+    }
+}
+  
+/* Boton aside */
+.btn-create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f97316, #fb923c);
+    color: white;
+    width: 90%;
+    height: 3.5rem;
+    margin: auto;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    transition: all 0.3s ease;
+    font-family: inherit;
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+      background: linear-gradient(135deg, #ea580c, #f97316);
+    }
+  
+    &:active {
+      transform: translateY(0);
+    }
+}
+  
+.modal-container {
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+}
+

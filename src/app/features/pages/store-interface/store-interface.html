@@ -5,7 +5,121 @@
     <a routerLink="/admin/events">Events</a>
     <a routerLink="/admin/attendees">Attendees</a>
     <a routerLink="/admin/settings">Settings</a>
-    <button>Crear Evento</button>
+    <!-- Botón crear evento -->
+<button class="btn-create" (click)="openModal()">
+    + Crear Evento
+</button>
+
+<!-- Modal -->
+@if(showModal){
+    <!-- Fondo oscuro -->
+    <div class="modal-overlay" (click)="closeModal()"></div>
+
+    <!-- Formulario -->
+    <div class="modal-container">
+        <div class="modal-header">
+            <div>
+                <h2>Crear Nuevo Evento</h2>
+                <p>Completa la información para crear un evento para tu negocio</p>
+            </div>
+            <button class="modal-close" (click)="closeModal()">✕</button>
+        </div>
+
+        <form [formGroup]="createEventForm" (click)="onSubmit()">
+             <div class="form-group">
+                <label>Nombre del Evento *</label>
+                <input 
+                    type="text" 
+                    formControlName="eventName"
+                    placeholder="Ej: Taller de Fotografía Avanzada">
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <label>Descripción *</label>
+                <textarea 
+                    formControlName="eventDescription"
+                    placeholder="Describe tu evento en detalle...">
+                </textarea>
+            </div>
+
+            <!-- Fecha y Hora -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha *</label>
+                    <input 
+                        type="date" 
+                        formControlName="date">
+                </div>
+                <div class="form-group">
+                    <label>Hora *</label>
+                    <input 
+                        type="number" 
+                        formControlName="time"
+                        placeholder="Ej: 20">
+                </div>
+            </div>
+
+            <!-- Ubicación -->
+            <div class="form-group">
+                <label>Ubicación *</label>
+                <input 
+                    type="text" 
+                    formControlName="location"
+                    placeholder="Dirección completa del evento">
+            </div>
+
+            <!-- Categoría y Estado -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Categoría *</label>
+                    <select formControlName="category">
+                        <option value="" disabled>Selecciona una categoría</option>
+                        <option value="music">🎵 Música</option>
+                        <option value="food">🍔 Comida</option>
+                        <option value="sports">⚽ Deportes</option>
+                        <option value="art">🎨 Arte</option>
+                        <option value="tech">💻 Tecnología</option>
+                        <option value="other">📌 Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Estado *</label>
+                    <select formControlName="status">
+                        <option value="upcoming">📅 Próximo</option>
+                        <option value="completed">✅ Completado</option>
+                        <option value="cancelled">❌ Cancelado</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Visibilidad -->
+            <div class="form-group form-check">
+                <input 
+                    type="checkbox" 
+                    formControlName="isPublic"
+                    id="isPublic">
+                <label for="isPublic">Evento público</label>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-actions">
+                <button 
+                    type="button" 
+                    class="btn-cancel"
+                    (click)="closeModal()">
+                    Cancelar
+                </button>
+                <button 
+                    type="submit" 
+                    class="btn-submit"
+                    [disabled]="createEventForm.invalid">
+                    📅 Publicar Evento
+                </button>
+            </div>
+        </form>
+    </div>
+}
 </aside>
 <div class="content">
 <router-outlet></router-outlet>
