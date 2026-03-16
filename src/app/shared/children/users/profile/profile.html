@@ -71,17 +71,17 @@
     }
   </section>
 
-  @for (post of posts | async; track post._id) {
+  @for (post of posts; track post._id) {
     <div class="post-box">
       <div class="user-information">
         <div class="icon"><img [src]="post.userName.userImg" alt="" /></div>
         <div class="user-event">
           <h3>{{ post.userName.userName }}</h3>
           <p class="date">{{ post.createdAt | date: 'dd MMMM yyyy' }}</p>
-          <h4>{{ post.eventName?.eventName }}</h4>
+          <p class="date">{{ post.createdAt | date:'HH:mm'}}</p>
         </div>
       </div>
-      <p class="description">{{ post.eventName.eventDescription }}</p>
+      <p class="description">{{ post.comment }}</p>
       @if (post.postImg) {
         <div class="post-img"><img [src]="post.postImg" alt="" /></div>
       }

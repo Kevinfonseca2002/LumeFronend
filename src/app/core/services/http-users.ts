@@ -52,5 +52,20 @@ export class HttpUsers {
   patchUser(id: string, formData: FormData) {
     return this.http.patch(`http://localhost:3000/users/${id}`, formData)
 }
+
+addRegisteredEvent(userId: string, eventId: string): Observable<any> {
+    return this.http.post(
+        `http://localhost:3000/users/${userId}/registered-events`,
+        { eventId },
+        { headers: this.httpAuth.getHeaders() }         
+    )
+}
+
+getRegisteredEvents(userId: string): Observable<any> {
+    return this.http.get(
+        `http://localhost:3000/users/${userId}/registered-events`,
+        { headers: this.httpAuth.getHeaders() }
+    )
+}
   
 }

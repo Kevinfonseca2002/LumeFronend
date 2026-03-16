@@ -1,9 +1,24 @@
+<div class="filters">
+    <button 
+        [class.active]="activeFilter === 'all'"
+        (click)="filterEvents('all')">
+        Todos los Eventos
+    </button>
+    <button 
+        [class.active]="activeFilter === 'registered'"
+        (click)="filterEvents('registered')">
+        Mis Eventos
+    </button>
+</div>
 
 <div class="card-position">
-@for(event of events ; track events){
+       @if(filteredEvents.length === 0){
+        <p>No hay eventos disponibles</p>
+    }
+@for(event of filteredEvents ; track event._id){
 <div class="card">
     <div class="event-img">
-        <img src="assets/images/event-card/camino_mamifero.jpg" alt="">
+        <img [src]="event.eventImg" alt="">
     </div>
     <h3 class="name">{{event.eventName}}</h3>
     <p>{{event.eventDescription}}</p>
@@ -12,7 +27,7 @@
         <li>{{event.date | date: 'dd MMMM yyyy'}}</li>
         <li>{{event.date | date: 'HH:mm'}}</li>
         <li>{{event.location}}</li>
-        <li>{{event.attendees}}</li>
+        <li>{{event.attendees}} asistentes</li>
     </ul>
     <button (click)="addAttendee(event._id)">Asistir</button>
 </div>

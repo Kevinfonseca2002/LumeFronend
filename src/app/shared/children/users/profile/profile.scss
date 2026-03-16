@@ -1,31 +1,32 @@
-.btn::before{
-    height: 100%;
-    width: 2rem;
-    background-size: cover;
-    content: "hola";
-    vertical-align: middle;
+.btn::before {
+  height: 100%;
+  width: 2rem;
+  background-size: cover;
+  content: "hola";
+  vertical-align: middle;
 
 }
-.cancel-edit{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    border-radius: 1rem;
-    border: none;
-    background-color:red;
-    height: 2.5rem;
-    width: 10rem;
-    color: white;
-    cursor: pointer;
-    transition: 0.2s;
-    z-index: 1000;
-    margin: 1rem auto;
 
-        &:hover{
-      transform: scale(1.1)
-    }
+.cancel-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 1rem;
+  border: none;
+  background-color: red;
+  height: 2.5rem;
+  width: 10rem;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 1000;
+  margin: 1rem auto;
+
+  &:hover {
+    transform: scale(1.1)
+  }
 }
 
 .personal-info {
@@ -56,11 +57,12 @@
     transition: 0.2s;
     z-index: 1000;
 
-        &:hover{
-            transform: scale(1.1);
-        }
+    &:hover {
+      transform: scale(1.1);
+    }
 
   }
+
   .backround {
     width: 100%;
     height: 10rem;
@@ -75,9 +77,11 @@
       0% {
         background-position: 0% 50%;
       }
+
       50% {
         background-position: 100% 50%;
       }
+
       100% {
         background-position: 0% 50%;
       }
@@ -126,12 +130,15 @@
       font-size: 1.2rem;
       color: gray;
     }
+
     ul {
       display: flex;
       flex-direction: row;
       gap: 3rem;
       list-style: none;
+
       li {
+
         .email-box,
         .address-box {
           display: flex;
@@ -145,8 +152,16 @@
             color: #898989;
           }
 
-          .icon img {
-            filter: invert(50%);
+          .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+
+            img {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+              filter: invert(0);
+            }
           }
         }
       }
@@ -164,6 +179,7 @@
   .events {
     border-top: rgb(168, 85, 247) solid 0.8rem;
   }
+
   .connections {
     border-top: rgb(236, 72, 153) solid 0.8rem;
   }
@@ -211,18 +227,20 @@
     transition: box-shadow 0.3s ease-in-out;
   }
 
-  .user-information{
+  .user-information {
     display: flex;
     width: 95%;
     flex-direction: row;
-    justify-content:start;
+    justify-content: start;
 
-    .user-event{
+    .user-event {
       display: flex;
       flex-direction: column;
       margin-bottom: 1.5rem;
 
-      p, h3, h4 {
+      p,
+      h3,
+      h4 {
         margin: 0.1rem 0 0 1.3rem
       }
 
@@ -233,18 +251,22 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
+
     img {
       border-radius: 50%;
     }
   }
+
   h3 {
     margin-top: 0.5rem;
     font-size: 1.2rem;
   }
+
   .date {
     font-size: 0.9rem;
     color: #898989;
   }
+
   h4 {
     font-weight: bold;
     color: rgb(168, 85, 247);
@@ -254,11 +276,13 @@
     width: 90%;
     color: black;
   }
+
   .post-img {
     width: 92.5%;
     height: 30rem;
     border: solid 1px rgb(150, 150, 150);
     border-radius: 0.5rem;
+
     img {
       object-fit: cover;
       width: 100%;

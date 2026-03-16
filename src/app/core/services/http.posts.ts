@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
+import { HttpAuth } from './http-auth';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +9,16 @@ import { map, Observable, tap } from 'rxjs';
 export class HttpPosts {
 
 constructor(
-  private http:HttpClient
+  private http:HttpClient,
+  private httpAuth: HttpAuth
 ){}
 
 createPost(input:any):Observable<any>{
-  return this.http.post<any>("http://localhost:3000/posts",input)
+  return this.http.post<any>("http://localhost:3000/posts",input, { headers: this.httpAuth.getHeaders() })
 }
 
 findAllPost():Observable<any>{
-  return this.http.get<any>("http://localhost:3000/posts").pipe(
+  return this.http.get<any>("http://localhost:3000/posts", { headers: this.httpAuth.getHeaders() }).pipe(
     // tap( data => {
     //   console.log(data)
     // }),
@@ -29,16 +31,23 @@ findAllPost():Observable<any>{
 }
 
 deletePost(id:string | null):Observable<any>{
-  return this.http.delete(`http://localhost:3000/posts${id}`)
+  return this.http.delete(`http://localhost:3000/posts${id}`, { headers: this.httpAuth.getHeaders() })
 }
 
 patchPost(id:string, updatedData: any):Observable<any>{
-  return this.http.patch<any>(`http://localhost:3000/posts${id}`, updatedData).pipe(
+  return this.http.patch<any>(`http://localhost:3000/posts${id}`, updatedData, { headers: this.httpAuth.getHeaders() }).pipe(
     map ((data)=>{data.PostById}),
     tap ((data)=>{
       console.log(data)
       return data})
   )
+}
+
+getPostsByUser(userId: string): Observable<any> {
+    return this.http.get(
+        `http://localhost:3000/posts/user/${userId}`,
+        { headers: this.httpAuth.getHeaders() }
+    )
 }
   
 }

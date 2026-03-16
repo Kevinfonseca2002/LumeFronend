@@ -22,10 +22,10 @@
         <div class="user-event">
           <h3>{{ post.userName.userName }}</h3>
           <p class="date">{{ post.createdAt | date: 'dd MMMM yyyy' }}</p>
-          <h4>{{ post.eventName.eventName }}</h4>
+          <p class="date">{{ post.createdAt | date: 'HH:mm' }}</p>
+          <h4>{{ post.comment }}</h4>
         </div>
       </div>
-      <p class="description">{{ post.eventName.eventDescription }}</p>
       @if (post.postImg) {
          <div class="post-img"><img [src]="post.postImg" alt="post image" /></div>
       }

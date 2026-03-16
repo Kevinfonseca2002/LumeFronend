@@ -77,11 +77,13 @@ constructor(
         if(this.postsForm.value){
       const formData = new FormData()
 
+      this.postsForm.patchValue({ userName: this.id })
+
       Object.keys(this.postsForm.value).forEach(key => {
         formData.append(key, this.postsForm.value[key])
       })
 
-      if(this.selectedFile) formData.append('postImg', this.selectedFile) // 👈 agrega imagen
+      if(this.selectedFile) formData.append('postImg', this.selectedFile)
 
       this.httpPost.createPost(formData).subscribe({
         next: data => {

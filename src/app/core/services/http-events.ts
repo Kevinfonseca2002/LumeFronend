@@ -23,15 +23,15 @@ export class HttpEvents {
   }
 
   editEvent(id: string, event: any):Observable<any>{
-    return this.http.patch(`http://localhost:3000/events/${id}`, event)
+    return this.http.patch(`http://localhost:3000/events/${id}`, event, { headers: this.httpAuth.getHeaders()})
   }
 
   createEvent(storeId: string | undefined, input: any):Observable<any>{
-    return this.http.post(`http://localhost:3000/events/store/${storeId}`, input)
+    return this.http.post(`http://localhost:3000/events/store/${storeId}`, input, { headers: this.httpAuth.getHeaders()})
   }
 
   deleteEvent(id: string):Observable<any>{
-    return this.http.delete(`http://localhost:3000/events/${id}`)
+    return this.http.delete(`http://localhost:3000/events/${id}`, { headers: this.httpAuth.getHeaders()})
   }
 
   addAttendeetoEvent(eventId: string, userId: string | undefined):Observable<any>{

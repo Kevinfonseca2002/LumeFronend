@@ -1,5 +1,5 @@
 
-.filter{
+.filters {
     display: flex;
     justify-content: space-evenly;
     width: 40%;
@@ -25,6 +25,13 @@
             transform:translateY(-10%);
             color: black;
             box-shadow: rgba(0, 0, 0, 0.4) 0px 5px;
+        }
+
+        &.active {
+            background-color: white;
+            border: 0.15rem solid black;
+            border-radius: 1rem;
+            color: black;
         }
     }
 }
