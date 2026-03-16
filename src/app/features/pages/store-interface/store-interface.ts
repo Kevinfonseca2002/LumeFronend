@@ -17,6 +17,7 @@ export class StoreInterface {
   showModal: boolean = false
   createEventForm!:FormGroup
   storeId!:string | undefined
+  selectedFile!: File
 
   constructor(
     private httpEvents: HttpEvents,
@@ -54,14 +55,36 @@ closeModal(){
     this.showModal = false
 }
 
+onFileChange(event: any){
+    const file = event.target.files[0]
+    if(file) this.selectedFile = file
+}
+
 onSubmit(){
-    this.httpEvents.createEvent(this.storeId, this.createEventForm.value).subscribe({
+    // this.httpEvents.createEvent(this.storeId, this.createEventForm.value).subscribe({
+    //   next: (response) => {
+    //     console.log(response);
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //   }
+    // })
+     if(this.createEventForm.invalid) return
+
+    const formData = new FormData()
+
+    Object.keys(this.createEventForm.value).forEach(key => {
+      formData.append(key, this.createEventForm.value[key])
+    })
+
+    if(this.selectedFile) formData.append('eventImg', this.selectedFile) // 👈 agrega imagen
+
+    this.httpEvents.createEvent(this.storeId, formData).subscribe({
       next: (response) => {
-        console.log(response);
+        console.log(response)
+        this.closeModal()
       },
-      error: (error) => {
-        console.log(error);
-      }
+      error: (error) => console.log(error)
     })
 }
 }

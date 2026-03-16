@@ -2,7 +2,11 @@
   <section class="personal-info">
     <div class="backround"></div>
     <div class="profile-info">
-      <div class="profile-picture"><img src="assets/Profiles/Person2.jpg" alt="" /></div>
+      @if(httpAuth.currentUser$ | async; as user){
+    <div class="profile-picture">
+        <img [src]="user?.userImg" alt="" />
+    </div>
+}
       <div class="edit-user-name">
         <label for="userName">Name</label>
         <input type="text" formControlName="userName" />

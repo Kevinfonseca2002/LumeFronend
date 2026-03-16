@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { HttpAuth } from '../../../../core/services/http-auth';
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpUsers } from '../../../../core/services/http-users';
 import { HttpPosts } from '../../../../core/services/http.posts';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, take } from 'rxjs';
 import { ProfileEditform } from '../../../layout/profile-editform/profile-editform';
 
 
 @Component({
   selector: 'user-profile',
-  imports: [ AsyncPipe, ProfileEditform],
+  imports: [AsyncPipe, ProfileEditform, DatePipe],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -20,17 +20,32 @@ export class Profile {
   editMode: boolean = false;
   private posts$: BehaviorSubject<void> = new BehaviorSubject<void>(undefined)
 
-  constructor( 
+  constructor(
     public httpAuth: HttpAuth,
     public httpUser: HttpUsers,
     public httpPost: HttpPosts,
-    private router: Router ) {}
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.posts= this.posts$.pipe(
-      switchMap(()=>this.httpPost.findAllPost())
+    this.posts = this.posts$.pipe(
+      switchMap(() => this.httpPost.findAllPost())
     )
-    console.log(this.posts, this.posts$)
+
+    this.httpAuth.getId().pipe(take(1)).subscribe({
+      next: (id) => {
+        if (id) {
+          this.httpUser.getUserById(id).pipe(take(1)).subscribe({
+            next: (data) => {
+              this.httpAuth.saveLocalStorage(
+                localStorage.getItem('token')!,
+                data.userById
+              )
+            },
+            error: (err) => console.error(err)
+          })
+        }
+      }
+    })
   }
 
   editProfile() {
@@ -41,15 +56,15 @@ export class Profile {
     this.editMode = false;
   }
 
-  deleteProfile(id:string | undefined) {
-   
+  deleteProfile(id: string | undefined) {
+
     this.httpUser.deleteUser(`${id}`).subscribe({
       next: (data) => {
         console.log("Delete ID:", id);
         console.log("data:", this.posts)
       },
-      error: (error) => console.error('Error deleting the profile, please try again', error), 
-      complete: ()=>this.router.navigate(["home"])     
+      error: (error) => console.error('Error deleting the profile, please try again', error),
+      complete: () => this.router.navigate(["home"])
     })
   }
 

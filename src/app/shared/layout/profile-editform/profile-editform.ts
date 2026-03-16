@@ -5,10 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpAuth } from '../../../core/services/http-auth';
 import { BehaviorSubject, firstValueFrom, Observable, switchMap } from 'rxjs';
 import { Profile } from '../../children/users/profile/profile';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'editForm',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AsyncPipe],
   templateUrl: './profile-editform.html',
   styleUrl: './profile-editform.scss',
 })

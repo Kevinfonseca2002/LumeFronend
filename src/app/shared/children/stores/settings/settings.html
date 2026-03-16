@@ -1,12 +1,13 @@
-
 <h1 class="title">Settings</h1>
 <p class="settings-description">Manage your account preferences</p>
 
 <section class="store-information">
     <h2>Bussiness Details</h2>
-    <form 
-    [formGroup]="editForm"
-    (click)="onSubmit()">
+    <form [formGroup]="editForm" (click)="onSubmit()">
+        <div class="form-item">
+            <label>Imagen de perfil</label>
+            <input type="file" accept="image/*" (change)="onFileChange($event)">
+        </div>
         <div class="form-item">
             <label for="name">Bussiness Name</label>
             <input type="text" formControlName="userName">
@@ -17,8 +18,7 @@
         </div>
         <div class="form-item">
             <label for="">Telephone</label>
-            <input type="text"
-            formControlName="phone">
+            <input type="text" formControlName="phone">
         </div>
         <div class="form-item">
             <label for="">Address</label>

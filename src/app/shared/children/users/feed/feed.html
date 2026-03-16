@@ -6,11 +6,12 @@
     [formGroup]="postsForm"
     (click)="onSubmit()"
     >
-    <div class="icon"><img src="assets/Profiles/Person1.jpg" alt=""></div>
+    <div class="icon"><img [src]="userInfo.userImg" alt=""></div>
     <textarea formControlName="comment"></textarea>
 
-    postImg
-    <button type="submit"><div class="icon"><img src="assets/icons/feed/send.png" alt=""></div>Share</button>
+    <input type="file" accept="image/*" (change)="onFileChange($event)">
+
+    <button type="submit">Share</button>
     </form>
 </section>
 
@@ -20,13 +21,13 @@
         <div class="icon"><img [src]="post.userName.userImg" alt="" /></div>
         <div class="user-event">
           <h3>{{ post.userName.userName }}</h3>
-          <p class="date">{{ post.createdAt }}</p>
+          <p class="date">{{ post.createdAt | date: 'dd MMMM yyyy' }}</p>
           <h4>{{ post.eventName.eventName }}</h4>
         </div>
       </div>
       <p class="description">{{ post.eventName.eventDescription }}</p>
       @if (post.postImg) {
-        <div class="post-img"><img src="" alt="" /></div>
+         <div class="post-img"><img [src]="post.postImg" alt="post image" /></div>
       }
     </div>
   }

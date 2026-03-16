@@ -10,7 +10,6 @@ import { authGuard } from './core/guards/auth-guard';
 import { publicGuardGuard } from './core/guard/public-guard-guard';
 import { roleGuard } from './core/guard/role-guard';
 import { Profile } from './shared/children/users/profile/profile';
-import { Chats } from './shared/children/users/chats/chats';
 import { Events } from './shared/children/users/events/events';
 import { Feed } from './shared/children/users/feed/feed';
 import { Dashboard } from './shared/children/stores/dashboard/dashboard';
@@ -54,10 +53,6 @@ export const routes: Routes = [
         {
             path: "my-profile",
             component: Profile
-        },
-        {
-            path: "chats",
-            component: Chats
         },
         {
             path: 'events',

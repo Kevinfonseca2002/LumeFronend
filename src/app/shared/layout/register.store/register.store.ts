@@ -10,6 +10,7 @@ import { HttpAuth } from '../../../core/services/http-auth';
 })
 export class RegisterStore {
   formData!: FormGroup;
+  selectedFile!: File
 
   constructor(private httpAuth: HttpAuth) {
     this.formData = new FormGroup({
@@ -26,15 +27,34 @@ export class RegisterStore {
       tiktokLink: new FormControl(''),
     });
   }
+  onFileChange(event: any){
+    const file = event.target.files[0]
+    if(file) this.selectedFile = file
+  }
 
   onSubmit() {
-    if (this.formData.valid) {
-      this.httpAuth.register(this.formData.value).subscribe({
-        next: (response) => console.log(`Signed up successfully`, response),
-        error: (error) => console.error('Error signing you up, please try again', error),
-        complete: () => this.formData.reset(),
-      });
-      console.log(this.formData.value);
-    }
+    // if (this.formData.valid) {
+    //   this.httpAuth.register(this.formData.value).subscribe({
+    //     next: (response) => console.log(`Signed up successfully`, response),
+    //     error: (error) => console.error('Error signing you up, please try again', error),
+    //     complete: () => this.formData.reset(),
+    //   });
+    //   console.log(this.formData.value);
+    // }
+            if(this.formData.valid){
+            const formData = new FormData()
+
+            Object.keys(this.formData.value).forEach(key => {
+                formData.append(key, this.formData.value[key])
+            })
+
+            if(this.selectedFile) formData.append('userImg', this.selectedFile)
+
+            this.httpAuth.register(formData).subscribe({
+                next: (response) => console.log('Signed up successfully', response),
+                error: (error) => console.error('Error signing you up', error),
+                complete: () => this.formData.reset()
+            })
+        }
   }
 }

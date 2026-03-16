@@ -14,14 +14,13 @@
     <section class="personal-info">
       @if (!this.editMode) {
         <button class="edit-button" (click)="editProfile()">
-          <div class="icon"><img src="assets/icons/profile-page/settings.png" alt="" /></div>
           Edit Profile
         </button>
       }
       <div class="backround"></div>
       <div class="profile-info">
         <h3>{{ user.userName }}</h3>
-        <div class="profile-picture"><img src="assets/Profiles/Person2.jpg" alt="" /></div>
+        <div class="profile-picture"><img [src]="user.userImg" alt="" /></div>
 
         <p>{{ user.description }}</p>
 
@@ -78,13 +77,13 @@
         <div class="icon"><img [src]="post.userName.userImg" alt="" /></div>
         <div class="user-event">
           <h3>{{ post.userName.userName }}</h3>
-          <p class="date">{{ post.createdAt }}</p>
-          <h4>{{ post.eventName.eventName }}</h4>
+          <p class="date">{{ post.createdAt | date: 'dd MMMM yyyy' }}</p>
+          <h4>{{ post.eventName?.eventName }}</h4>
         </div>
       </div>
       <p class="description">{{ post.eventName.eventDescription }}</p>
       @if (post.postImg) {
-        <div class="post-img"><img src="" alt="" /></div>
+        <div class="post-img"><img [src]="post.postImg" alt="" /></div>
       }
     </div>
   }

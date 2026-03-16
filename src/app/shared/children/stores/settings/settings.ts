@@ -10,6 +10,7 @@ import { HttpAuth } from '../../../../core/services/http-auth';
 })
 export class Settings {
 
+  selectedFile!: File 
   editForm!:FormGroup
   storeId!:string | undefined
   storeData!:any[]
@@ -56,14 +57,30 @@ export class Settings {
     })
   }
 
+  onFileChange(event: any){
+    const file = event.target.files[0]
+    if(file) this.selectedFile = file
+  }
+
   onSubmit(){
-    this.httpUsers.updateUser(this.storeId, this.editForm.value).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        console.log(error);
-      }
+    // this.httpUsers.updateUser(this.storeId, this.editForm.value).subscribe({
+    //   next: (response) => {
+    //     console.log(response);
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //   }
+    // })
+    const formData = new FormData()
+    
+    Object.keys(this.editForm.value).forEach(key => {
+        formData.append(key, this.editForm.value[key])
+    })
+    if(this.selectedFile) formData.append('userImg', this.selectedFile)
+
+    this.httpUsers.updateUser(this.storeId, formData).subscribe({
+        next: (response) => console.log(response),
+        error: (error) => console.log(error)
     })
   }
 

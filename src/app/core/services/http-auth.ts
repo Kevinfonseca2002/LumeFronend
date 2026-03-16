@@ -14,7 +14,7 @@ import { RegisterResponse } from '../interfaces/response/register-response';
 export class HttpAuth {
 
   // 1. Espacio de memoria temporal donde se va a guardar la informacion
-  private currentUser = new BehaviorSubject<null|Partial<Users>>(null);
+  private currentUser = new BehaviorSubject<null|any>(null);
   private currentToken = new BehaviorSubject<null|String>(null);
 
   // 2. Observable para los datos actuales y ver si cambian
@@ -28,7 +28,7 @@ export class HttpAuth {
     this.getLocalStorageData()
   }
   
-  register(credentials:Register):Observable<undefined | never[] | Partial<Register>>{
+  register(credentials:Register | FormData):Observable<undefined | never[] | Partial<Register>>{
     return this.http.post<Partial<RegisterResponse>>('http://localhost:3000/auth/register', credentials).
       pipe(
         tap (data => console.log(data)),

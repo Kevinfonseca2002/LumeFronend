@@ -7,7 +7,7 @@
   
 } @else {
    <div class="store-header">
-    <div class="logo" routerLink="/feed/main"><img src="/assets/images/LumeLogo.png" alt="" /></div>
+    <div class="logo" routerLink="/admin/dashboard"><img [src]="storeData?.userImg" alt="" /></div>
     <div class="store-information">
       <h3>{{storeData?.userName}}</h3>
       <p>{{storeData?.description}}</p>

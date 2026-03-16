@@ -48,5 +48,9 @@ export class HttpUsers {
     
     return this.http.patch(`http://localhost:3000/users/${id}`, updatedData, { headers: this.httpAuth.getHeaders()})
   }
+
+  patchUser(id: string, formData: FormData) {
+    return this.http.patch(`http://localhost:3000/users/${id}`, formData)
+}
   
 }
