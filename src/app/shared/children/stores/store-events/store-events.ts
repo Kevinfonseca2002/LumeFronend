@@ -70,7 +70,10 @@ export class StoreEvents {
     })
     }
   deleteEvent(eventId: string){
-    
+    this.httpEvent.deleteEvent(eventId).subscribe({
+      next: data => console.log("Event Deleted", data),
+      error: err => console.error(err)
+    })    
   }
 
   editFormToggle(event: any){
