@@ -19,60 +19,60 @@ import { Settings } from './shared/children/stores/settings/settings';
 
 export const routes: Routes = [
     // Cuando esta Logueado
-    { 
-    path: "admin",
-    component: StoreInterface,
-    // canActivate: [authGuard, roleGuard],
-    data: { roles: ['store']},
-    children:[
-        {
-            path: 'dashboard',
-            component: Dashboard
-        },
-        {
-            path: 'attendees',
-            component:Attendees
-        },
-        {
-            path: 'events',
-            component: StoreEvents
-        },
-        {
-            path: 'settings',
-            component: Settings
-        }
+    {
+        path: "admin",
+        component: StoreInterface,
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['store'] },
+        children: [
+            {
+                path: 'dashboard',
+                component: Dashboard
+            },
+            {
+                path: 'attendees',
+                component: Attendees
+            },
+            {
+                path: 'events',
+                component: StoreEvents
+            },
+            {
+                path: 'settings',
+                component: Settings
+            }
 
-    ]
+        ]
     },
-    { 
-    path: "feed", 
-    component: PersonInterface,
-    // canActivate: [authGuard, roleGuard],
-    data: { roles: ['user']},
-    children: [
-        {
-            path: "my-profile",
-            component: Profile
-        },
-        {
-            path: 'events',
-            component: Events
-        },
-        {
-            path:"main",
-            component: Feed
-        }
+    {
+        path: "feed",
+        component: PersonInterface,
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['user'] },
+        children: [
+            {
+                path: "my-profile",
+                component: Profile
+            },
+            {
+                path: 'events',
+                component: Events
+            },
+            {
+                path: "main",
+                component: Feed
+            }
 
-    ]
+        ]
     },
-    
-    
+
+
     //Sin logueo
-    { path: "login", component: Login, canActivate: [publicGuardGuard]},
-    { path: "register", component: Register, canActivate: [publicGuardGuard]},
-    { path: "home", component: Home, canActivate: [publicGuardGuard]},
-    { path: "notfound",component: NotFound},
-    { path: "signup", component: UserNewForm},
+    { path: "login", component: Login, canActivate: [publicGuardGuard] },
+    { path: "register", component: Register, canActivate: [publicGuardGuard] },
+    { path: "home", component: Home, canActivate: [publicGuardGuard] },
+    { path: "notfound", component: NotFound },
+    { path: "signup", component: UserNewForm },
 
     //Redirecciones
     { path: '', redirectTo: 'home', pathMatch: 'full' },

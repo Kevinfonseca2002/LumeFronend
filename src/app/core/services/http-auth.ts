@@ -105,7 +105,7 @@ export class HttpAuth {
   checkAuthStatus():Observable<boolean>{
     //Paso 1: Ver si el token esta en el local storage y obtenerlo (responder al cliente si no existe)
     //Desestructurar los datos obtenidos del local 
-    const {token}= this.getLocalStorageData()
+    const token=localStorage.getItem("token") 
 
     if(!token){
       this.clearLocalStorageData()

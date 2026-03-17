@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+
+  <!-- Estrella de 5 puntas -->
+  <polygon points="100,45 112,82 152,82 120,105 132,142 100,120 68,142 80,105 48,82 88,82"
+           fill="none" stroke="#7c3aed" stroke-width="6" stroke-linejoin="round"/>
+</svg>

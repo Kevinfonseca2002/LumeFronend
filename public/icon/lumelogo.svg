@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 160" width="300" height="160">
+  <!-- Sombra exterior -->
+  <ellipse cx="152" cy="87" rx="130" ry="65" fill="#1a1a1a"/>
+  <!-- Forma principal negra tipo badge -->
+  <path d="M150,18 C210,12 280,35 285,75 C290,112 240,142 175,148 C120,153 50,148 25,118 C5,93 18,52 55,35 C85,20 120,22 150,18 Z"
+        fill="#1c1c1c" stroke="#111" stroke-width="2"/>
+  <!-- Borde interior decorativo -->
+  <path d="M150,28 C205,22 268,43 273,78 C278,110 232,136 170,142 C118,147 55,140 33,114 C15,92 27,56 61,41 C89,28 122,32 150,28 Z"
+        fill="none" stroke="#444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- Texto Lume en cursiva -->
+  <text x="150" y="102"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="62"
+        font-weight="bold"
+        font-style="italic"
+        text-anchor="middle"
+        fill="white"
+        letter-spacing="-1">Lume</text>
+  <!-- Línea decorativa inferior -->
+  <path d="M95,115 Q150,125 205,115" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
